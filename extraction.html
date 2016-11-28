@@ -1,0 +1,87 @@
+<!Doctype html>
+<html lang="fr">
+  <head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/knacss.css"/>
+	<link rel="stylesheet" href="css/MainWin.css"/>	    
+	<title>PDF Gesture - Extraction</title>
+  </head>
+  <body>
+	<nav class="nav">
+	<header><h1>Extraction</h1></header>
+	<table>
+		<tr>
+			<td>
+			<table>
+				<tr>
+					<td colspan=4 class="tabletd"><form><input type="radio" name="ExtractionType" value="one" checked/> Extraire une page.</form></td>
+				</tr>
+				<tr>
+					<td>Numero page : </td><td><form><input type="text" name="PageIndex" value=""/></form></td>
+				</tr>		
+				<tr>	
+					<td colspan=4 class="tabletd"><form><input type="radio" name="ExtractionType" value="more" /> Extraire plusieurs pages.</form></td>
+				</tr>	
+				<tr>
+					<td>Pages :</td><td colspan=2><form><input type="NUMBER" MIN="0" MAX="10" STEP="1" VALUE="6" SIZE="6"/><i> Model : 1-3;1,4</i></form></td>
+				</tr>
+				<tr>
+					<td colspan=4 class="tabletd"><form><input type="radio" name="ExtractionType" value="impaire" /> Extraire toutes les pages impaires.</form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="radio" name="ExtractionType" value="paire" /> Extraire toutes les pages paires.</form></td>
+				</tr>				
+				<tr>
+					<td colspan=4 class="tabletd"><form><input type="checkbox" name="ExtractionType" value="new" checked/> Enregistrer dans un nouveau fichier :</form></td>
+				</tr>
+				<tr>
+					<td>Nom du fichier : </td><td colspan=3><form><input type="text" size=100% name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4 class="tabletd">Enregistrer dans le repertoire : </td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><progress max="100"/>70</form></td>
+				</tr>
+				
+			</table>
+			</td>
+			<td>
+			<table>
+				<tr>
+					<td colspan=3 style="text-align:right;"><form><input type="image" class="btnNav" value=submit src="images/refresh.png"></form></td> 
+				</tr>
+				<tr rowspan=8>
+					<td colspan=3><form action="afficherpdf.php" method="post"></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>	
+			<td>
+			<table>
+			<tr>				
+				<td colspan=2 class="btnplacement"><form><input type="submit" value="Quitter" class="bouton" /></form></td><td colspan=2 class="btnplacement"><form><input type="submit" value="Valider" class="bouton" /></form></td>
+			</tr>
+			</table>
+			</td>
+			<td>
+			<table>
+			<tr>
+				<td><form><input type="image" class="btnNav" value=submit src="images/flecheL.png" /></form></td><td style="text-align:center;"><form><input type="submit" value="Selectionner" class="bouton" /></form></td><td style="text-align:right;"><form><input type="image" class="btnNav" value=submit src="images/flecheR.png" /></form></td>
+			</tr>			
+			</table>			
+			</td>
+		</tr>
+	</table>
+  
+  <footer>
+		Maxime CHAREYRON - Nahel CHAZOT - Alexandre DONNE - Jérome MASSARD - Alan SCHMIDT
+  </footer>
+
+  </nav>
+  </body>
+</html>

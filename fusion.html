@@ -1,0 +1,81 @@
+<!Doctype html>
+<html lang="fr">
+  <head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/knacss.css"/>
+	<link rel="stylesheet" href="css/MainWin.css"/>	    
+	<title>PDF Gesture - Fusion</title>
+  </head>
+  <body>
+	<nav class="nav">
+	<header><h1>Fusion</h1></header>
+	<table>
+		<tr>
+			<td>
+			<table>
+				<tr>
+					<td colspan=4><form>Nombre de PDF à fusionner : <input type="NUMBER" name="nbPages" value="4"  step="1" MIN=0 SIZE=50 /></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>	
+				<tr style="border-top: 2px #8F6455 solid;">
+					<td>Nom du fichier : </td><td colspan=3><form><input type="text" size=100% name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4 class="tabletd">Enregistrer dans le repertoire : </td>
+				</tr>
+				<tr>
+					<td colspan=4><form><input type="text" size=30% name="PATH"/> <input type="file" name="file"/></form></td>
+				</tr>
+				<tr>
+					<td colspan=4><progress max="100" size=100% />70</td>
+				</tr>
+				
+			</table>
+			</td>
+			<td>
+			<table>
+				<tr>
+					<td colspan=3 style="text-align:right;"><form><input type="image" class="btnNav" value=submit src="images/refresh.png"></form></td> 
+				</tr>
+				<tr rowspan=8>
+					<td colspan=3><form action="afficherpdf.php" method="post"></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>	
+			<td>
+			<table>
+			<tr>				
+				<td colspan=2 class="btnplacement"><form><input type="submit" value="Quitter" class="bouton" /></form></td><td colspan=2 class="btnplacement"><form><input type="submit" value="Valider" class="bouton" /></form></td>
+			</tr>
+			</table>
+			</td>
+			<td>
+			<table>
+			<tr>
+				<td><form><input type="image" class="btnNav" value=submit src="images/flecheL.png" /></form></td><td style="text-align:center;"><form><input type="submit" value="Selectionner" class="bouton" /></form></td><td style="text-align:right;"><form><input type="image" class="btnNav" value=submit src="images/flecheR.png" /></form></td>
+			</tr>			
+			</table>			
+			</td>
+		</tr>
+	</table>
+  
+  <footer>
+		Maxime CHAREYRON - Nahel CHAZOT - Alexandre DONNE - Jérome MASSARD - Alan SCHMIDT
+  </footer>
+
+  </nav>
+  </body>
+</html>
