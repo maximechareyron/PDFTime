@@ -29,15 +29,17 @@
 			<div class="col-sm-6 text-center" >
 				 <div>
 				 <div class="row text-right">
-					<button type="button" class="btn btn-md btn-default" style="margin:2.5%"><i class="glyphicon glyphicon-plus"></i></button>
-					<button type="button" class="btn btn-md btn-default" style="margin:2.5%"><i class="glyphicon glyphicon-minus"></i></button>
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile()"><i class="glyphicon glyphicon-plus"></i></button>
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="rmFile()"><i class="glyphicon glyphicon-minus"></i></button>
 				
 				 </div>
 				
-				<div style="overflow-y:scroll;max-height:400px;" >			
+				<div style=" overflow-y:scroll;height:400px; " >
 				
-				<div class="col-sm-12">
-				 <div class="text-left">
+				<div class="col-sm-12" id="zone_nbFile">
+
+
+					<div class="text-left">
 					Selectionner un PDF à fusionner	
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
@@ -50,33 +52,7 @@
 				  </div>
 				</form>
 				</div>
-				
-				<div class="text-left">
-					Selectionner un PDF à fusionner	
-				 <form>
-				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
-				  </div>
-				</form>
-				</div>
-				<div class="text-left">
-					Selectionner un PDF à fusionner	
-				 <form>
-				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
-				  </div>
-				</form>
-				</div>
+
 				
 				<div class="text-left">
 					Selectionner un PDF à fusionner	
@@ -91,34 +67,28 @@
 				  </div>
 				</form>
 				</div>
-				
-				<div class="text-left">
-					Selectionner un PDF à fusionner	
-				 <form>
-				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
-				  </div>
-				</form>
+
+
+
+				<script type="text/javascript">
+					function addNewFile() {
+					    MaDiv = document.createElement("div");
+					    MaDiv.innerHTML='lkqsmdjmqskjdqfjm';
+						document.getElementsByName('zone_nbFile').appendChild(MaDiv);
+
+
+                    }
+
+                    function rmFile() {
+
+                    }
+
+				</script>
+				<div id="zoneDrag&Drop">
+
 				</div>
-				
-				<div class="text-left">
-					Selectionner un PDF à fusionner	
-				 <form>
-				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
-				  </div>
-				</form>
-				</div>				
+
+
 
 				</div>
 				</div>				
