@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/MainWin.css">
+	<script src="js/Main.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-static-top">
@@ -38,7 +39,17 @@
 				
 				<div class="col-sm-12" id="zone_nbFile">
 
+					<div class="text-left"><b>Importer un fichier : </b></div>
 
+					<div class="upload-drop-zone" id='drop-zone'>
+						<b>Glisser-Déposer un PDF.</b>
+					</div>
+
+
+
+
+
+					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
 					<div class="text-left">
 					Selectionner un PDF à fusionner	
 				 <form>
@@ -53,33 +64,32 @@
 				</form>
 				</div>
 
-				
-				<div class="text-left">
-					Selectionner un PDF à fusionner	
-				 <form>
-				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
-				  </div>
-				</form>
-				</div>
-
-
-
-				<script type="text/javascript">
+				<script>
+					var nbVar=0;
 					function addNewFile() {
-					    MaDiv = document.createElement("div");
-					    MaDiv.innerHTML='lkqsmdjmqskjdqfjm';
-						document.getElementsByName('zone_nbFile').appendChild(MaDiv);
 
+                        var MaDiv = document.createElement('div');
+					    MaDiv.className='text-left';
+                        MaDiv.id=('add'+nbVar.toString());
+					    MaDiv.innerHTML='Selectionner un PDF à fusionner\
+                        <form>\
+                        <div class="input-group" style="margin-bottom:2.5%;">\
+                            <input type="text" class="form-control" placeholder="Chemin vers fichier">\
+                            <div class="input-group-btn">\
+                            <button class="btn btn-default" type="file">\
+                            Parcourir\
+                            </button>\
+                            </div>\
+                            </div>\
+                            </form>';
+						document.getElementById('zone_nbFile').appendChild(MaDiv);
+						nbVar=nbVar+1;
 
                     }
 
-                    function rmFile() {
+                    function rmFile(){
+                            document.getElementById('zone_nbFile').removeChild('add' + nbVar.toString());
+                            nbVar=nbVar-1;
 
                     }
 
