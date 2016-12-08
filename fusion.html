@@ -66,11 +66,12 @@
 
 				<script>
 					var nbVar=0;
+
 					function addNewFile() {
 
                         var MaDiv = document.createElement('div');
 					    MaDiv.className='text-left';
-                        MaDiv.id=('add'+nbVar.toString());
+                        MaDiv.id=('add');
 					    MaDiv.innerHTML='Selectionner un PDF à fusionner\
                         <form>\
                         <div class="input-group" style="margin-bottom:2.5%;">\
@@ -88,7 +89,8 @@
                     }
 
                     function rmFile(){
-                            document.getElementById('zone_nbFile').removeChild('add' + nbVar.toString());
+							var element = document.getElementById('add')// element à supprimer
+							element.parentNode.removeChild(element);
                             nbVar=nbVar-1;
 
                     }
