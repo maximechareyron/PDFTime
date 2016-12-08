@@ -85,13 +85,35 @@
 
 				<form class="text-center">
 					<div>
-						<button type="button" class="btn btn-lg btn-default"><i class="glyphicon glyphicon-pencil"></i></button>
+						<div class="btn-group" data-toggle="buttons" >
+							<label class="btn btn-lg btn-default" id="btnPencil">
+								<input type="checkbox" autocomplete="off" class="" onclick="active('btnPencil');cPencil();" ><i class="glyphicon glyphicon-pencil"></i>
+							</label>
+						</div>
 						<div class="text-center">
 							Ajouter une nouvelle zone d'insertion
 						</div>
 					</div>
 				</form>
 
+					<script type="text/javascript">
+						function active(thingID)
+						{
+						    element = document.getElementById(thingID);
+						    if(element.className == "btn btn-lg btn-default")
+						        element.className = 'btn btn-lg btn-primary';
+						    else
+						        element.className = 'btn btn-lg btn-default';
+						}
+
+						function cPencil()
+						{
+						    if(document.body.style.cursor == "auto")
+						        document.body.style.cursor = "crosshair";
+							else
+							    document.body.style.cursor = "auto";
+						}
+					</script>
 
 				</div>
 
