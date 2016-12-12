@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+	<title>FEpdf - Fusion</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/MainWin.css">
+	<script type="text/javascript" src="js/Main.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="row text-center">
+				<div class="navbar-brand">				
+				<img src="logo.svg" alt="logo"></img>						
+				</div>					
+				<div class="navbar-navbar" ><h2>Fusion</h2></div>
+			</div>
+			
+		</div>
+	</div>
+	</div>
+	<div class="container col-sm-10 col-sm-offset-1">
+		<div class="row well">				
+
+
+
+
+
+			<div class="col-sm-6 text-center" >
+				 <div>
+				 <div class="row text-right">
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile()"><i class="glyphicon glyphicon-plus"></i></button>
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="rmFile()"><i class="glyphicon glyphicon-minus"></i></button>
+				
+				 </div>
+				
+				<div style=" overflow-y:scroll;height:400px; " >
+				
+				<div class="col-sm-12" id="zone_nbFile">
+
+					<div class="text-left"><b>Importer un fichier : </b></div>
+
+
+					<div class="upload-drop-zone" id='drop-zone'>
+						<b>Glisser-Déposer un PDF.</b>
+					</div>
+					<script type="text/javascript">
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('dragover', function(e) {
+                            e.preventDefault(); // Annule l'interdiction de drop
+							this.className="upload-drop-zone dragover";
+                        });
+
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('dragleave', function(e) {
+                            this.className="upload-drop-zone";
+                        });
+
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('drop', function(e) {
+                            this.className="upload-drop-zone";
+							addNewFile();
+                        });
+
+					</script>
+
+					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
+					<div class="text-left">
+					Selectionner un PDF à fusionner	
+				 <form>
+				  <div class="input-group" style="margin-bottom:2.5%;">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
+				    <div class="input-group-btn">
+				      <button class="btn btn-default" type="file">
+					Parcourir
+				      </button>
+				    </div>
+				  </div>
+				</form>
+				</div>
+
+
+				<div id="zoneDrag&Drop">
+
+				</div>
+
+
+
+				</div>
+				</div>				
+
+
+				</div>
+				<hr>
+				<div class="text-left">
+				Enregistrer dans le repertoire:
+				 <form>
+				  <div class="input-group" style="margin-bottom:2.5%;">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
+				    <div class="input-group-btn">
+				      <button class="btn btn-default" type="file">
+					Parcourir
+				      </button>
+				    </div>
+				  </div>
+				</form>
+				</div>
+				<div></div>
+				<div class="row progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+   				 	<span class="sr-only">70% Complete</span>
+  				</div>
+				</div>
+				<div class="row">
+				<button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Annuler</button>
+				<button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Valider</button>
+				</div>
+							
+			</div> 
+
+			<div class="col-md-6 visible-md visible-lg" style="text-align:center;">
+				
+				<div class="row text-right">
+					<button type="button" class="btn btn-lg btn-primary" style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-refresh"></i></button>	
+				</div>				
+				<hr>
+				<div>
+					 <img src="images/No_PDF.png" class="img-rounded" alt="No_PDF" width=80% height=120%>				
+				</div>
+
+				<div class="row">
+				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-arrow-left"></i></button>
+				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;">Selectionner</button>
+				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-arrow-right"></i></button>
+				</div>
+			</div> 				
+		</div>
+	</div> 
+	<div class="container-fluid">
+	</div> 
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' type="text/	javascript"></script>
+	<script src='js/bootstrap.js'></script>
+	 <footer>
+		Maxime CHAREYRON - Nahel CHAZOT - Alexandre DONNE - Jérome MASSARD - Ivan SCHMIDT
+  	</footer>
+</body>
+</html>
