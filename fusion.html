@@ -41,13 +41,26 @@
 
 					<div class="text-left"><b>Importer un fichier : </b></div>
 
+
 					<div class="upload-drop-zone" id='drop-zone'>
 						<b>Glisser-Déposer un PDF.</b>
 					</div>
+					<script type="text/javascript">
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('dragover', function(e) {
+                            e.preventDefault(); // Annule l'interdiction de drop
+							this.className="upload-drop-zone dragover";
+                        });
 
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('dragleave', function(e) {
+                            this.className="upload-drop-zone";
+                        });
 
+                        document.querySelector('*[class="upload-drop-zone"]').addEventListener('drop', function(e) {
+                            this.className="upload-drop-zone";
+							addNewFile();
+                        });
 
-
+					</script>
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
 					<div class="text-left">
@@ -102,13 +115,6 @@
 				</div>
 							
 			</div> 
-			
-
-
-
-
-
-
 
 			<div class="col-md-6 visible-md visible-lg" style="text-align:center;">
 				
