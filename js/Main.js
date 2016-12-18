@@ -1,6 +1,9 @@
 /**
  * Created by jeromem on 06/12/16.
  */
+include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
+include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
 + function($) {
     'use strict';
 
@@ -84,5 +87,18 @@ function addNewFile() {
 function rmFile(){
     var element = document.getElementById('add')// element à supprimer
     element.parentNode.removeChild(element);
+
+}
+
+function alertSave(){
+    var alertdiv=document.createElement('div');
+    alertdiv.className='alert alert-success alert-dismissible col-sm-8 col-sm-offset-2 ';
+    alertdiv.style.top="1%";
+    alertdiv.innerHTML='\
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\
+        <strong>File successfully save !</strong> \
+        <button class="btn btn-md btn-success" style="margin-left:25px;">Open file</button>\
+        <button class="btn btn-md btn-success" style="margin-left:25px;">Open directory</button>';
+    document.body.appendChild(alertdiv);
 
 }
