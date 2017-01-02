@@ -72,7 +72,7 @@ function addNewFile() {
     MaDiv.innerHTML='Selectionner un PDF à fusionner\
                         <form>\
                         <div class="input-group" style="margin-bottom:2.5%;">\
-                            <input type="text" class="form-control" placeholder="Chemin vers fichier">\
+                            <input type="text" class="form-control" placeholder="Chemin vers fichier" ="path">\
                             <div class="input-group-btn">\
                             <button class="btn btn-default" type="file">\
                             Parcourir\
@@ -100,5 +100,14 @@ function alertSave(){
         <button class="btn btn-md btn-success" style="margin-left:25px;">Open file</button>\
         <button class="btn btn-md btn-success" style="margin-left:25px;">Open directory</button>';
     document.body.appendChild(alertdiv);
+
+}
+
+function Validation_Fusion()
+{
+    var commandPDFtk = new String('pdftk ');
+    commandPDFtk = commandPDFtk + document.getElementById('add').
+
+            ///realisation en cours
 
 }
