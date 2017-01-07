@@ -64,6 +64,10 @@ function visibility(thingId)
 
 //Fonction pour la pages de fusion
 
+
+var NBFILE = 0;
+var listPathFile = new Array();
+
 function addNewFile() {
 
     var MaDiv = document.createElement('div');
@@ -72,7 +76,7 @@ function addNewFile() {
     MaDiv.innerHTML='Selectionner un PDF à fusionner\
                         <form>\
                         <div class="input-group" style="margin-bottom:2.5%;">\
-                            <input type="text" class="form-control" placeholder="Chemin vers fichier" ="path">\
+                            <input type="text" class="form-control" placeholder="Chemin vers fichier" >\
                             <div class="input-group-btn">\
                             <button class="btn btn-default" type="file">\
                             Parcourir\
@@ -81,13 +85,13 @@ function addNewFile() {
                             </div>\
                             </form>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
-
+    NBFILE=NBFILE+1;
 }
 
 function rmFile(){
     var element = document.getElementById('add')// element à supprimer
     element.parentNode.removeChild(element);
-
+    NBFILE=NBFILE-1;
 }
 
 function alertSave(){
@@ -106,8 +110,11 @@ function alertSave(){
 function Validation_Fusion()
 {
     var commandPDFtk = new String('pdftk ');
-    commandPDFtk = commandPDFtk + document.getElementById('add').
 
-            ///realisation en cours
+    commandPDFtk = commandPDFtk + listPathFile(NBFILE-1); //get PATH
+    commandPDFtk = commandPDFtk + ' ' + 'output' + ' ' + document.getElementsByName('outputPATH').toString(); // ajouter le PATH du fichier de sorti
 
+    NBFILE--;
+    listPathFile = new Array();
+    alertSave(); ///realisation en cours
 }
