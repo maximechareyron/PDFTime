@@ -156,20 +156,21 @@
 							
 			</div> 
 
-			<div class="col-md-6 visible-md visible-lg" style="text-align:center;">
+			<div class="col-sm-6 visible-md visible-lg" style="text-align:center;">
 				
 				<div class="row text-right">
-					<button type="button" class="btn btn-lg btn-primary" style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-refresh"></i></button>	
+					<button type="button" class="btn btn-md btn-primary" style="margin:1%;"><i class="glyphicon glyphicon glyphicon-refresh"></i></button>
 				</div>				
-				<hr>
-				<div>
-					 <img src="images/No_PDF.png" class="img-rounded" alt="No_PDF" width=80% height=120%>				
+
+				<div class="row view-pdf" >
+						<object type="application/pdf" data="git_real_slides.pdf" width="100%" height="600" id="pdf">No Support</object>'
 				</div>
 
+
 				<div class="row">
-				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-arrow-left"></i></button>
-				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;">Selectionner</button>
-				<button type="button" class="btn btn-lg btn-primary " style="margin-left:5%;margin-right:5%;"><i class="glyphicon glyphicon glyphicon-arrow-right"></i></button>
+				<button type="button" class="btn btn-md btn-primary " style="margin-left:5%;margin-right:5%;" onclick="prevPage()"><i class="glyphicon glyphicon glyphicon-arrow-left"></i></button>
+				<button type="button" class="btn btn-md btn-primary " style="margin-left:5%;margin-right:5%;">Selectionner</button>
+				<button type="button" class="btn btn-md btn-primary " style="margin-left:5%;margin-right:5%;" onclick="nextPage()"><i class="glyphicon glyphicon glyphicon-arrow-right"></i></button>
 				</div>
 			</div> 				
 		</div>
