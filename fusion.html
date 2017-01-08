@@ -100,6 +100,30 @@
 
                         });
 						*/
+                        function searchinput() {
+                            document.getElementById('fileInput').click();
+                            document.getElementById('fileInput').onchange=function() {
+                                var file = document.getElementById('fileInput').value;
+                                if(file.substring(file.length-4,file.length) != ".pdf") {
+                                    alert("Vous ne pouvez ajouter que des fichiers PDF.")
+                                    return;
+                                }
+                                document.getElementById('inputPath').value=file;
+                            }
+                        }
+
+                        function searchoutput() {
+                            document.getElementById('fileOutput').click();
+                            document.getElementById('fileOutput').onchange=function() {
+                                var file = document.getElementById('fileOutput').value;
+                                if (file.substring(file.length - 4, file.length) != ".pdf"){
+                                    alert("Vous ne pouvez ajouter que des fichiers PDF.")
+                                	return;
+                            	}
+                                document.getElementById('outputPath').value=file;
+                            }
+                        }
+
 					</script>
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
@@ -107,11 +131,10 @@
 					Selectionner un PDF à fusionner	
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath">
 				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
+						<input id="fileInput" type="file" style="display:none;" />
+						<input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput();"/>
 				    </div>
 				  </div>
 				</form>
@@ -135,11 +158,12 @@
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
 				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="outputPath">
-				    <div class="input-group-btn">
-				      <button class="btn btn-default" type="file">
-					Parcourir
-				      </button>
-				    </div>
+
+					  <div class="input-group-btn">
+						  <input id="fileOutput" type="file" style="display:none;" />
+						  <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchoutput()"/>
+					  </div>
+
 				  </div>
 				</form>
 				</div>
