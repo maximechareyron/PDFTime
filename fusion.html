@@ -47,59 +47,77 @@
 
 
 					<div class="upload-drop-zone" id='drop-zone'>
-						<b>Glisser-Déposer un PDF.</b>
+						<b id="zoneDropText">Glisser-Déposer un PDF.</b>
 					</div>
-					<script>
+					<script type="text/javascript">
+
+
                         var dropZone = document.getElementById('drop-zone');
 
-                        // Optional.   Show the copy icon when dragging over.  Seems to only work for chrome.
+                        //Fonction permettant d'ajouter plusieurs listener d'un coup
+                        function addListenerMulti(el, s, fn) {
+                            var evts = s.split(' ');
+                            for (var i=0, iLen=evts.length; i<iLen; i++) {
+                                el.addEventListener(evts[i], fn, false);
+                            }
+                        }
+                        //Permet d'empecher le navigateur d'ouvrir les fichiers à sa facons
+                        addListenerMulti(window,'drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        });
+
+
                         dropZone.addEventListener('dragover', function(e) {
                             e.stopPropagation();
                             e.preventDefault();
-                            e.dataTransfer.dropEffect = 'copy';
+                            dropZone.className = "upload-drop-zone dragover";
+
                         });
 
-                        // Get file data on drop
+                        dropZone.addEventListener('dragleave', function(e) {
+                            dropZone.className="upload-drop-zone";
+                        });
+
+
                         dropZone.addEventListener('drop', function(e) {
                             e.stopPropagation();
                             e.preventDefault();
-                            var files = e.dataTransfer.files; // Array of all files
-                            for (var i=0, file; file=files[i]; i++) {
-                                if (file.type.match(/pdf.*/)) {
-                                    var reader = new FileReader();
-                                    reader.onload = function(e2) { // finished reading file data.
-                                        alert(e2.target.result.pathname);
-                                    }
-                                    reader.readAsDataURL(file); // start reading the file data.
-                                }   }   });
-					</script>
-					<script type="text/javascript">
-						/*
-                        document.querySelector('*[id="drop-zone"]').addEventListener('dragover', function(e) {
-                            e.preventDefault(); // Annule l'interdiction de drop
-							this.className="upload-drop-zone dragover";
-                        });
+                            dropZone.className="upload-drop-zone";
+                            $('#zoneDropText').replaceWith('<b>Just kidding drag and drop isn\'t supported.</b>');
 
-                        document.querySelector('*[id="drop-zone"]').addEventListener('dragleave', function(e) {
-                            this.className="upload-drop-zone";
-                        });
+                            // Récupération des données :
+                            var dt    = e.dataTransfer;
+                            var files = dt.files;
+                            for (var i=0; i<files.length; i++) {
+                                var file = files[i];
+                                var reader = new FileReader();
 
-                        document.querySelector('*[id="drop-zone"]').addEventListener('drop', function(e) {
-                            e.preventDefault();
-                            this.className="upload-drop-zone";
+                                //attach event handlers here :
+                                reader.addEventListener('loadend', function(e, file) {
+                                    var bin           = this.result;
+                                    var newFile       = document.createElement('div');
+                                    document.getElementById('drop-zone').appendChild(newFile);
+                                    var img = document.createElement("img");
+                                    img.file = file;
+                                    img.src = bin;
+                                    document.getElementById('drop-zone').appendChild(img);
+                                });
 
-                            var files    = e.dataTransfer.files;
-                            function alertFileName()
-                            {
-                                alert(this.value);
+                                reader.readAsDataURL(file);
                             }
-                            var input=document.getElementById('drop-zone').value;
-                            input.addEventListener('change', alertFilename, false);
 
-                            addNewFile();
+                            return false;
+						});
+
+
+
+
+
+                        dropZone.addEventListener('drop', function (e) {
 
                         });
-						*/
+
                         function searchinput() {
                             document.getElementById('fileInput').click();
                             document.getElementById('fileInput').onchange=function() {
@@ -118,12 +136,11 @@
                                 var file = document.getElementById('fileOutput').value;
                                 if (file.substring(file.length - 4, file.length) != ".pdf"){
                                     alert("Vous ne pouvez ajouter que des fichiers PDF.")
-                                	return;
-                            	}
+                                    return;
+                                }
                                 document.getElementById('outputPath').value=file;
                             }
                         }
-
 					</script>
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
