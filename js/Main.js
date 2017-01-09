@@ -65,27 +65,27 @@ function visibility(thingId)
 //Fonction pour la pages de fusion
 
 
-var NBFILE = 0;
+var NBFILE = 1;
 var listPathFile = new Array();
 
 function addNewFile() {
 
     var MaDiv = document.createElement('div');
     MaDiv.className='text-left';
-    MaDiv.id=('add');
+    MaDiv.id=('add'+NBFILE);
     MaDiv.innerHTML='Selectionner un PDF à fusionner\
                         <form>\
-                        <div class="input-group" style="margin-bottom:2.5%;">\
-                            <input type="text" class="form-control" placeholder="Chemin vers fichier" >\
-                            <div class="input-group-btn">\
-                            <button class="btn btn-default" type="file">\
-                            Parcourir\
-                            </button>\
-                            </div>\
-                            </div>\
-                            </form>';
+        <div class="input-group" style="margin-bottom:2.5%;">\
+        <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'">\
+        <div class="input-group-btn">\
+        <input id="fileInput'+NBFILE+'" accept="application/pdf" type="file" style="display:none;" />\
+        <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput('+NBFILE+');"/>\
+        </div>\
+        </div>\
+        </form>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
     NBFILE=NBFILE+1;
+    return NBFILE;
 }
 
 function rmFile(){
