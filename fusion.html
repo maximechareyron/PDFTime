@@ -33,7 +33,7 @@
 			<div class="col-sm-6 text-center" >
 				 <div>
 				 <div class="row text-right">
-					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile()"><i class="glyphicon glyphicon-plus"></i></button>
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile(); addListenerTiret(NBFILE);"><i class="glyphicon glyphicon-plus"></i></button>
 					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="rmFile()"><i class="glyphicon glyphicon-minus"></i></button>
 				
 				 </div>
@@ -54,6 +54,7 @@
 
                         var dropZone = document.getElementById('drop-zone');
 
+
                         //Fonction permettant d'ajouter plusieurs listener d'un coup
                         function addListenerMulti(el, s, fn) {
                             var evts = s.split(' ');
@@ -62,7 +63,7 @@
                             }
                         }
                         //Permet d'empecher le navigateur d'ouvrir les fichiers à sa facons
-                        addListenerMulti(window,'drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+                        addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', function(e) {
                             e.preventDefault();
                             e.stopPropagation();
                         });
@@ -109,6 +110,7 @@
                                     }
                                     document.getElementById('zone-pdf').appendChild(pdf);
                                     addNewFile();
+                                    addListenerTiret(NBFILE);
                                     document.getElementById('inputPath'+NBFILE).value=name;
 
                                 });
@@ -169,11 +171,14 @@
 					</script>
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
-					<div class="text-left">
-					Selectionner un PDF à fusionner	
+					<div class="text-left" id="zoneMobile0">
+						<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>
+
 				 <form>
+					 <input type="image" src="tiret.png" id="tiretMove0" height="15px" width="15px" style="position: relative; float: left; margin-right: 5px; cursor: move;"/>
 				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled>
+
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled style="cursor: text">
 				    <div class="input-group-btn">
 
 						<input id="fileInput0" accept="application/pdf" type="file" style="display:none;" />
@@ -184,6 +189,20 @@
 				</form>
 				</div>
 
+					<script type="text/javascript">
+
+                        function addListenerTiret(tiretid){
+                            document.getElementById('tiretMove'+tiretid).addEventListener('dragstart', function (e) {
+                                //var dt =e.dataTransfer;
+                                e.dataTransfer.setDragImage(document.getElementById('zoneMobile'+tiretid),10,40);
+
+                            });
+                        }
+
+                        addListenerTiret(0);
+
+
+					</script>
 
 				<div id="zoneDrag&Drop">
 
