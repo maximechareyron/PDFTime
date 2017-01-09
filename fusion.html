@@ -80,11 +80,12 @@
                         });
 
 
+
                         dropZone.addEventListener('drop', function(e) {
                             e.stopPropagation();
                             e.preventDefault();
                             dropZone.className="upload-drop-zone";
-                            $('#zoneDropText').replaceWith('<b>Just kidding drag and drop isn\'t supported.</b>');
+                            $('#zoneDropText').replaceWith('<b id="zoneDropText">Just kidding drag and drop isn\'t supported.</b>');
 
                             // Récupération des données :
                             var dt    = e.dataTransfer;
@@ -92,16 +93,23 @@
                             for (var i=0; i<files.length; i++) {
                                 var file = files[i];
                                 var reader = new FileReader();
-
                                 //attach event handlers here :
                                 reader.addEventListener('loadend', function(e, file) {
                                     var bin           = this.result;
-                                    var newFile       = document.createElement('div');
-                                    document.getElementById('drop-zone').appendChild(newFile);
-                                    var img = document.createElement("img");
-                                    img.file = file;
-                                    img.src = bin;
-                                    document.getElementById('drop-zone').appendChild(img);
+                                    var pdf=document.createElement('object');
+                                    pdf.type="application/pdf";
+                                    pdf.data=bin;
+                                    pdf.width="100%";
+                                    pdf.height="600";
+									pdf.id="pdf";
+                                    var oldpdf=document.getElementById('pdf');
+                                    if(oldpdf!=null) {
+                                        document.getElementById('zone-pdf').removeChild(oldpdf);
+                                    }
+                                    document.getElementById('zone-pdf').appendChild(pdf);
+                                    var nbfile=addNewFile();
+                                    document.getElementById('inputPath'+nbfile).value= "nouveau fichier drop";
+
                                 });
 
                                 reader.readAsDataURL(file);
@@ -111,22 +119,42 @@
 						});
 
 
+                        function searchinput(nbfile) {
+                            var input=document.getElementById("fileInput"+nbfile);
+                            input.click();
+                            input.onchange=function() {
+                                var path = document.getElementById('fileInput'+nbfile).value;
 
+                                var file=input.files[0];
 
-
-                        dropZone.addEventListener('drop', function (e) {
-
-                        });
-
-                        function searchinput() {
-                            document.getElementById('fileInput').click();
-                            document.getElementById('fileInput').onchange=function() {
-                                var file = document.getElementById('fileInput').value;
-                                if(file.substring(file.length-4,file.length) != ".pdf") {
+                                if(path.substring(path.length-4,path.length) != ".pdf") {
                                     alert("Vous ne pouvez ajouter que des fichiers PDF.")
                                     return;
                                 }
-                                document.getElementById('inputPath').value=file;
+                                document.getElementById('inputPath'+nbfile).value=path;
+
+                                var reader = new FileReader();
+
+                                //attach event handlers here :
+                                reader.addEventListener('loadend', function(e, file) {
+                                    var bin           = this.result;
+                                    var pdf=document.createElement('object');
+                                    pdf.type="application/pdf";
+                                    pdf.data=bin;
+                                    pdf.width="100%";
+                                    pdf.height="600";
+                                    pdf.id="pdf";
+                                    var oldpdf=document.getElementById('pdf');
+                                    if(oldpdf!=null) {
+                                        document.getElementById('zone-pdf').removeChild(oldpdf);
+                                    }
+                                    document.getElementById('zone-pdf').appendChild(pdf);
+
+                                });
+
+                                reader.readAsDataURL(file);
+
+
                             }
                         }
 
@@ -148,10 +176,12 @@
 					Selectionner un PDF à fusionner	
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0">
 				    <div class="input-group-btn">
-						<input id="fileInput" accept="application/pdf" type="file" style="display:none;" />
-						<input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput();"/>
+
+						<input id="fileInput0" accept="application/pdf" type="file" style="display:none;" />
+						<input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput(0);"/>
+
 				    </div>
 				  </div>
 				</form>
@@ -178,7 +208,7 @@
 
 					  <div class="input-group-btn">
 						  <input id="fileOutput" accept="application/pdf" type="file" style="display:none;" />
-						  <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchoutput()"/>
+						  <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchoutput(0)"/>
 					  </div>
 
 				  </div>
@@ -203,8 +233,8 @@
 					<button type="button" class="btn btn-md btn-primary" style="margin:1%;"><i class="glyphicon glyphicon glyphicon-refresh"></i></button>
 				</div>				
 
-				<div class="row view-pdf" >
-						<object type="application/pdf" data="git_real_slides.pdf" width="100%" height="600" id="pdf">No Support</object>'
+				<div class="row view-pdf" id="zone-pdf">
+						<!--<object type="application/pdf" data="git_real_slides.pdf" width="100%" height="600" id="pdf">No Support</object>-->
 				</div>
 
 
