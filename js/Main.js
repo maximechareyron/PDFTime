@@ -7,32 +7,6 @@ include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
 + function($) {
     'use strict';
 
-    // UPLOAD CLASS DEFINITION
-    // ======================
-
-    var dropZone = document.getElementById('drop-zone');
-
-    var startUpload = function(files) {
-        console.log(files)
-    }
-
-    dropZone.ondrop = function(e) {
-        e.preventDefault();
-        this.className = 'upload-drop-zone';
-
-        startUpload(e.dataTransfer.files)
-    }
-
-    dropZone.ondragover = function() {
-        this.className = 'upload-drop-zone drop';
-        return false;
-    }
-
-    dropZone.ondragleave = function() {
-        this.className = 'upload-drop-zone';
-        return false;
-    }
-
 }(jQuery)
 
 
@@ -65,31 +39,29 @@ function visibility(thingId)
 //Fonction pour la pages de fusion
 
 
-var NBFILE = 0;
-var listPathFile = new Array();
 
 function addNewFile() {
 
+    NBFILE=NBFILE+1;
     var MaDiv = document.createElement('div');
     MaDiv.className='text-left';
-    MaDiv.id=('add');
+    MaDiv.id=('add'+NBFILE);
     MaDiv.innerHTML='Selectionner un PDF à fusionner\
                         <form>\
-                        <div class="input-group" style="margin-bottom:2.5%;">\
-                            <input type="text" class="form-control" placeholder="Chemin vers fichier" >\
-                            <div class="input-group-btn">\
-                            <button class="btn btn-default" type="file">\
-                            Parcourir\
-                            </button>\
-                            </div>\
-                            </div>\
-                            </form>';
+        <div class="input-group" style="margin-bottom:2.5%;">\
+        <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled>\
+        <div class="input-group-btn">\
+        <input id="fileInput'+NBFILE+'" accept="application/pdf" type="file" style="display:none;" />\
+        <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput('+NBFILE+');"/>\
+        </div>\
+        </div>\
+        </form>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
-    NBFILE=NBFILE+1;
+
 }
 
 function rmFile(){
-    var element = document.getElementById('add')// element à supprimer
+    var element = document.getElementById('add'+NBFILE)// element à supprimer
     element.parentNode.removeChild(element);
     NBFILE=NBFILE-1;
 }

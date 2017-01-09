@@ -20,7 +20,6 @@
 				</div>					
 				<div class="navbar-navbar" ><h2>Fusion</h2></div>
 			</div>
-			
 		</div>
 	</div>
 	</div>
@@ -51,6 +50,7 @@
 					</div>
 					<script type="text/javascript">
 
+                        var NBFILE = 0;
 
                         var dropZone = document.getElementById('drop-zone');
 
@@ -93,6 +93,7 @@
                             for (var i=0; i<files.length; i++) {
                                 var file = files[i];
                                 var reader = new FileReader();
+                                var name = file.name;
                                 //attach event handlers here :
                                 reader.addEventListener('loadend', function(e, file) {
                                     var bin           = this.result;
@@ -107,11 +108,11 @@
                                         document.getElementById('zone-pdf').removeChild(oldpdf);
                                     }
                                     document.getElementById('zone-pdf').appendChild(pdf);
-                                    var nbfile=addNewFile();
-                                    document.getElementById('inputPath'+nbfile).value= "nouveau fichier drop";
+                                    addNewFile();
+                                    document.getElementById('inputPath'+NBFILE).value=name;
 
                                 });
-
+								alert(name);
                                 reader.readAsDataURL(file);
                             }
 
@@ -126,12 +127,12 @@
                                 var path = document.getElementById('fileInput'+nbfile).value;
 
                                 var file=input.files[0];
-
-                                if(path.substring(path.length-4,path.length) != ".pdf") {
+								var name=file.name;
+                                if(name.substring(name.length-4,name.length) != ".pdf") {
                                     alert("Vous ne pouvez ajouter que des fichiers PDF.")
                                     return;
                                 }
-                                document.getElementById('inputPath'+nbfile).value=path;
+                                document.getElementById('inputPath'+nbfile).value=name;
 
                                 var reader = new FileReader();
 
@@ -161,12 +162,8 @@
                         function searchoutput() {
                             document.getElementById('fileOutput').click();
                             document.getElementById('fileOutput').onchange=function() {
-                                var file = document.getElementById('fileOutput').value;
-                                if (file.substring(file.length - 4, file.length) != ".pdf"){
-                                    alert("Vous ne pouvez ajouter que des fichiers PDF.")
-                                    return;
-                                }
-                                document.getElementById('outputPath').value=file;
+                                var repertory = document.getElementById('fileOutput').files[0];
+                                document.getElementById('outputPath').value=repertory.name;
                             }
                         }
 					</script>
@@ -176,7 +173,7 @@
 					Selectionner un PDF à fusionner	
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled>
 				    <div class="input-group-btn">
 
 						<input id="fileInput0" accept="application/pdf" type="file" style="display:none;" />
@@ -204,7 +201,7 @@
 				Enregistrer dans le repertoire:
 				 <form>
 				  <div class="input-group" style="margin-bottom:2.5%;">
-				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="outputPath">
+				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="outputPath" disabled>
 
 					  <div class="input-group-btn">
 						  <input id="fileOutput" accept="application/pdf" type="file" style="display:none;" />
