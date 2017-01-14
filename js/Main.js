@@ -48,7 +48,7 @@ function addNewFile() {
     MaDiv.id=('zoneMobile'+NBFILE);
     MaDiv.innerHTML='<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
                         <form>\
-                        <i class="glyphicon glyphicon-trash movebtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
+                        <i class="glyphicon glyphicon-trash trashbtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
                         <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" ></i> \
         <div class="input-group" style="margin-bottom:2.5%;">\
         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\

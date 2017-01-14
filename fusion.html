@@ -33,7 +33,7 @@
 			<div class="col-sm-6 text-center" >
 				 <div>
 				 <div class="row text-right">
-					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile(); addListenerTiret(NBFILE);"><i class="glyphicon glyphicon-plus"></i></button>
+					<button type="button" class="btn btn-md btn-default" style="margin:2.5%" onclick="addNewFile(); addListenerZoneMobile(NBFILE);"><i class="glyphicon glyphicon-plus"></i></button>
 				 </div>
 				
 				<div style=" overflow-y:scroll;height:400px; " >
@@ -46,7 +46,8 @@
 					<div class="upload-drop-zone" id='drop-zone'>
 						<b id="zoneDropText">Glisser-Déposer un PDF.</b>
 					</div>
-					<script type="text/javascript">
+
+                    <script type="text/javascript">
 
                         var NBFILE = 0;
 
@@ -83,11 +84,23 @@
                         dropZone.addEventListener('drop', function(e) {
                             e.stopPropagation();
                             e.preventDefault();
+                            var dt    = e.dataTransfer;
+                            if(dt.files.length!=0) {
+                                var name = dt.files[0].name;
+                            }
+                            if(name==null || name.substring(name.length-4,name.length) != ".pdf"){
+                                alert("Vous ne pouvez ajouter que des fichiers PDF.");
+                                dropZone.className="upload-drop-zone";
+                                return;
+                            }
                             dropZone.className="upload-drop-zone";
-                            $('#zoneDropText').replaceWith('<b id="zoneDropText">Just kidding drag and drop isn\'t supported.</b>');
+                            $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
+                            window.setTimeout(function(){
+                                $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
+                            }, 5000);
 
                             // Récupération des données :
-                            var dt    = e.dataTransfer;
+
                             var files = dt.files;
                             for (var i=0; i<files.length; i++) {
                                 var file = files[i];
@@ -108,11 +121,10 @@
                                     }
                                     document.getElementById('zone-pdf').appendChild(pdf);
                                     addNewFile();
-                                    addListenerTiret(NBFILE);
+                                    addListenerZoneMobile(NBFILE);
                                     document.getElementById('inputPath'+NBFILE).value=name;
 
                                 });
-								alert(name);
                                 reader.readAsDataURL(file);
                             }
 
@@ -170,10 +182,10 @@
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
 					<div class="text-left" id="zoneMobile0">
-						<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>
+						<p style="margin : 0 0 0 20px;" class="noSelection" >Selectionner un PDF à fusionner</p>
 
 				 <form>
-					 <i class="glyphicon glyphicon-trash movebtn" id="trash0" onclick="trashFILE(0)"></i>
+					 <i class="glyphicon glyphicon-trash trashbtn" id="trash0" onclick="trashFILE(0)"></i>
 					 <i class="glyphicon glyphicon-move movebtn" id="tiretMove0" ></i>
 				  <div class="input-group" style="margin-bottom:2.5%;">
 
@@ -190,15 +202,25 @@
 
 					<script type="text/javascript">
 
-                        function addListenerTiret(tiretid){
-                            document.getElementById('tiretMove'+tiretid).addEventListener('dragstart', function (e) {
-                                //var dt =e.dataTransfer;
-                                e.dataTransfer.setDragImage(document.getElementById('zoneMobile'+tiretid),10,40);
-
+                        function addListenerZoneMobile(id){
+                            document.getElementById('tiretMove'+id).addEventListener('dragstart', function (e) {
+                                var dt=e.dataTransfer;
+                                dt.setDragImage(document.getElementById('zoneMobile'+id),70,50);
+                                dt.data=document.getElementById('inputPath'+id).value;
                             });
+
+                            document.getElementById('tiretMove'+id).addEventListener('dragend', function (e) {
+                                var zone_nbfile=document.getElementById('zone_nbFile');
+                                var name=e.dataTransfer.data;
+                                zone_nbfile.removeChild(document.getElementById('zoneMobile'+id));
+                                addNewFile();
+                                addListenerZoneMobile(NBFILE);
+                                document.getElementById('inputPath'+NBFILE).value=name;
+                            });
+
                         }
 
-                        addListenerTiret(0);
+                        addListenerZoneMobile(0);
 
 
 					</script>
