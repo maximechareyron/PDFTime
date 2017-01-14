@@ -48,7 +48,8 @@ function addNewFile() {
     MaDiv.id=('zoneMobile'+NBFILE);
     MaDiv.innerHTML='<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
                         <form>\
-                        <input type="image" src="tiret.png" id="tiretMove'+NBFILE+'" height="15px" width="15px" style="position: relative; float: left; margin-right: 5px; cursor: move;"/> \
+                        <i class="glyphicon glyphicon-trash movebtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
+                        <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" ></i> \
         <div class="input-group" style="margin-bottom:2.5%;">\
         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\
         <div class="input-group-btn">\
@@ -63,6 +64,12 @@ function addNewFile() {
 
 function rmFile(){
     var element = document.getElementById('zoneMobile'+NBFILE)// element à supprimer
+    element.parentNode.removeChild(element);
+    NBFILE=NBFILE-1;
+}
+
+function trashFILE(FileNum){
+    var element = document.getElementById('zoneMobile'+FileNum)// element à supprimer
     element.parentNode.removeChild(element);
     NBFILE=NBFILE-1;
 }

@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="row text-center">
 				<div class="navbar-brand">				
-				<img src="logo.svg" alt="logo"></img>						
+				<img src="logo.svg" alt="logo" width="50" height="50"/>
 				</div>					
 				<div class="navbar-navbar" ><h2>Fusion</h2></div>
 			</div>
@@ -175,7 +175,8 @@
 						<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>
 
 				 <form>
-					 <input type="image" src="tiret.png" id="tiretMove0" height="15px" width="15px" style="position: relative; float: left; margin-right: 5px; cursor: move;"/>
+					 <i class="glyphicon glyphicon-trash movebtn" id="trash0" onclick="trashFILE(0)"></i>
+					 <i class="glyphicon glyphicon-move movebtn" id="tiretMove0" ></i>
 				  <div class="input-group" style="margin-bottom:2.5%;">
 
 				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled style="cursor: text">
