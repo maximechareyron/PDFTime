@@ -3,6 +3,11 @@
  */
 include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
 include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+include("dragndrop.js");
+include("filepath.js");
+include("pdf.js");
+include("pdf.worker.js");
+include("bootstrap.js");
 
 + function($) {
     'use strict';
