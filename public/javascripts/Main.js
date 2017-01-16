@@ -2,7 +2,7 @@
  * Created by jeromem on 06/12/16.
  */
 function include(fileName){
-    document.write("<script type='text/javascript' src='js/"+fileName+"'></script>" );
+    document.write("<script type='text/javascript' src='javascripts/"+fileName+"'></script>" );
 }
 
 //include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
