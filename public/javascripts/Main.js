@@ -19,8 +19,6 @@ include("bootstrap.js");
 }(jQuery)
 
 
-
-
 //Fonction pour la page extraction
 
 
