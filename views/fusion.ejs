@@ -23,8 +23,9 @@
 </div>
 </div>
 <div class="container col-sm-10 col-sm-offset-1">
-    <div class="row well">
 
+    <div class="row well">
+        <form action="/fusion/upload" method="post" enctype="multipart/form-data">
 
 
 
@@ -51,7 +52,7 @@
                         <div class="text-left" id="zoneMobile0" >
                             <p style="margin : 0 0 0 20px;" class="noSelection" >Selectionner un PDF à fusionner</p>
 
-                            <form>
+
                                 <i class="glyphicon glyphicon-trash trashbtn" id="trash0" onclick="trashFILE(0)"></i>
                                 <i class="glyphicon glyphicon-move movebtn" id="tiretMove0" draggable="true" ></i>
                                 <div class="input-group" style="margin-bottom:2.5%;">
@@ -59,12 +60,12 @@
                                     <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled style="cursor: text">
                                     <div class="input-group-btn">
 
-                                        <input id="fileInput0" accept="application/pdf" type="file" style="display:none;" />
+                                        <input id="fileInput0" accept="application/pdf" type="file"  name="upload" style="display:none;" />
                                         <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput(0);"/>
 
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
 
 
@@ -74,20 +75,22 @@
 
             </div>
             <hr>
+
             <div class="text-left">
                 Enregistrer dans le repertoire:
-                <form>
+
                     <div class="input-group" style="margin-bottom:2.5%;">
                         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="outputPath" disabled>
 
                         <div class="input-group-btn">
-                            <input id="fileOutput" accept="application/pdf" type="file" style="display:none;" />
+                            <input id="fileOutput" accept="application/pdf" type="file"   style="display:none;" />
                             <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchoutput(0)"/>
                         </div>
 
                     </div>
-                </form>
+
             </div>
+
             <div></div>
             <div class="row progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
@@ -96,11 +99,15 @@
             </div>
             <div class="row">
                 <button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Annuler</button>
-                <button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;" onclick="alertSave()">Valider</button>
+
+                <button type="submit" value="Upload" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;" onclick="alertSave()">Valider</button>
+
             </div>
 
-        </div>
 
+
+        </div>
+    </form>
         <div class="col-sm-6 visible-md visible-lg" style="text-align:center;">
 
             <div class="row text-right">
