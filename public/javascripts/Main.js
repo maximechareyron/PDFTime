@@ -97,17 +97,6 @@ function createNewFile() {
 
 }
 
-function rmFile(){
-    var element = document.getElementById('zoneMobile'+NBFILE)// element à supprimer
-    element.parentNode.removeChild(element);
-    NBFILE=NBFILE-1;
-}
-
-function trashFILE(FileNum){
-    var element = document.getElementById('zoneMobile'+FileNum)// element à supprimer
-    element.parentNode.removeChild(element);
-    NBFILE=NBFILE-1;
-}
 
 function alertSave(){
     var alertdiv=document.createElement('div');
@@ -119,39 +108,9 @@ function alertSave(){
         <button class="btn btn-md btn-success" style="margin-left:25px;">Open file</button>\
         <button class="btn btn-md btn-success" style="margin-left:25px;">Open directory</button>';
     document.body.appendChild(alertdiv);
+    window.setTimeout(function(){
+        document.body.removeChild(alertdiv);
+    }, 5000);
+
 
 }
-
-function Validation_Fusion()
-{
-    var commandPDFtk = new String('pdftk ');
-
-    commandPDFtk = commandPDFtk + listPathFile(NBFILE-1); //get PATH
-    commandPDFtk = commandPDFtk + ' ' + 'output' + ' ' + document.getElementsByName('outputPATH').toString(); // ajouter le PATH du fichier de sorti
-
-    NBFILE--;
-    alertSave(); ///realisation en cours
-}
-
-
-///PDF Display///
-
-(function(a){a.createModal=function(b){defaults={title:"",message:"PDFVIEW",closeButton:true,scrollable:false};var b=a.extend({},defaults,b);var c=(b.scrollable===true)?'style="max-height: 420px;overflow-y: auto;"':"";html='<div class="modal fade" id="myModal">';html+='<div class="modal-dialog">';html+='<div class="modal-content">';html+='<div class="modal-header">';html+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>';if(b.title.length>0){html+='<h4 class="modal-title">'+b.title+"</h4>"}html+="</div>";html+='<div class="modal-body" '+c+">";html+=b.message;html+="</div>";html+='<div class="modal-footer">';if(b.closeButton===true){html+='<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>'}html+="</div>";html+="</div>";html+="</div>";html+="</div>";a("body").prepend(html);a("#myModal").modal().on("hidden.bs.modal",function(){a(this).remove()})}})(jQuery);
-
-
-//PDF Gesture
-
-function nextPage(){
-    var pdf  = document.getElementById('pdf');
-    //noinspection JSAnnotator
-    pdf.getAttribute('pageNumber')= pdf.getAttribute('pageNumber')+1;
-
-}
-
-function prevPage(){
-    var pdf  = document.getElementById('pdf');
-    //noinspection JSAnnotator
-    pdf.getElementById('pageNumber') = pdf.getElementById('pageNumber')+1;
-
-}
-
