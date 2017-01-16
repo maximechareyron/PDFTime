@@ -1,8 +1,12 @@
 /**
  * Created by jeromem on 06/12/16.
  */
-include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
-include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+function include(fileName){
+    document.write("<script type='text/javascript' src='js/"+fileName+"'></script>" );
+}
+
+//include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
+//include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
 include("dragndrop.js");
 include("filepath.js");
 include("pdf.js");
@@ -54,7 +58,7 @@ function addNewFile() {
     MaDiv.innerHTML='<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
                         <form>\
                         <i class="glyphicon glyphicon-trash trashbtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
-                        <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" ></i> \
+                        <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" draggable="true"></i> \
         <div class="input-group" style="margin-bottom:2.5%;">\
         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\
         <div class="input-group-btn">\
@@ -100,7 +104,6 @@ function Validation_Fusion()
     commandPDFtk = commandPDFtk + ' ' + 'output' + ' ' + document.getElementsByName('outputPATH').toString(); // ajouter le PATH du fichier de sorti
 
     NBFILE--;
-    listPathFile = new Array();
     alertSave(); ///realisation en cours
 }
 

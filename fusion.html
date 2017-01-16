@@ -8,7 +8,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/Main.js"></script>
 
 </head>
 <body>
@@ -49,12 +48,12 @@
 
 
 					<div class="text-left"><b>Ou parcourez vos fichiers:</b></div>
-					<div class="text-left" id="zoneMobile0">
+					<div class="text-left" id="zoneMobile0" >
 						<p style="margin : 0 0 0 20px;" class="noSelection" >Selectionner un PDF à fusionner</p>
 
 				 <form>
 					 <i class="glyphicon glyphicon-trash trashbtn" id="trash0" onclick="trashFILE(0)"></i>
-					 <i class="glyphicon glyphicon-move movebtn" id="tiretMove0" ></i>
+					 <i class="glyphicon glyphicon-move movebtn" id="tiretMove0" draggable="true" ></i>
 				  <div class="input-group" style="margin-bottom:2.5%;">
 
 				    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath0" disabled style="cursor: text">
@@ -125,7 +124,7 @@
 	</div>
 	<script type="text/javascript" src="js/Main.js"></script>
 
-	 <footer>
+	<footer>
 		Maxime CHAREYRON - Nahel CHAZOT - Alexandre DONNE - Jérome MASSARD - Ivan SCHMIDT
   	</footer>
 </body>
