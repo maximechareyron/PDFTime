@@ -5,6 +5,7 @@
 var NBFILE = 0;
 
 var dropZone = document.getElementById('drop-zone');
+var newPlace = document.getElementById('newplace');
 
 
 //Fonction permettant d'ajouter plusieurs listener d'un coup
@@ -31,7 +32,6 @@ dropZone.addEventListener('dragover', function(e) {
 dropZone.addEventListener('dragleave', function(e) {
     dropZone.className="upload-drop-zone";
 });
-
 
 
 dropZone.addEventListener('drop', function(e) {
@@ -83,6 +83,26 @@ dropZone.addEventListener('drop', function(e) {
 
     return false;
 });
+
+
+newPlace.addEventListener('dragover', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    newPlace.className = "newplace dragover";
+
+});
+
+newPlace.addEventListener('dragleave', function(e) {
+    newPlace.className="newplace";
+});
+
+newPlace.addEventListener('drop', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+});
+
+
+
 
 
 function addListenerZoneMobile(id){

@@ -64,7 +64,9 @@ function addNewFile() {
         <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput('+NBFILE+');"/>\
         </div>\
         </div>\
-        </form>';
+        </form>\
+        <div class="newplace" id="newplace'+NBFILE+'">\
+        </div>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
 
 }
@@ -126,3 +128,4 @@ function prevPage(){
     pdf.getElementById('pageNumber') = pdf.getElementById('pageNumber')+1;
 
 }
+
