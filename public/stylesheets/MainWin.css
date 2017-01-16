@@ -53,23 +53,17 @@ padding :0;
 
 .newplace {
     color:#ccc;
-    height: 10px;
+    height: 15px;
     position: relative;
-    border-width: 1px;
-    border-style: dotted;
-    border-color:RGBA(0,0,0,0);
-    text-align: center
-}
-
-.newplace.dragover {
-    height: 30px;
-    border-width: 2px;
-    border-style: dotted;
-    border-color: red;
     text-align: center;
 }
 
-
+.newplace.dragover {
+    border-width: 2px;
+    border-style: dashed;
+    border-color:#ccc;
+    height: 50px;
+}
 
 footer{
 text-align:center;

@@ -53,11 +53,12 @@ function addNewFile() {
     var MaDiv = document.createElement('div');
     MaDiv.className='text-left';
     MaDiv.id=('zoneMobile'+NBFILE);
-    MaDiv.innerHTML='<p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
+    MaDiv.innerHTML='<div class="contenant" id="contenant'+NBFILE+'">\
+    <p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
                         <form>\
                         <i class="glyphicon glyphicon-trash trashbtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
                         <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" draggable="true"></i> \
-        <div class="input-group" style="margin-bottom:2.5%;">\
+        <div class="input-group" style="margin-bottom:2px;">\
         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\
         <div class="input-group-btn">\
         <input id="fileInput'+NBFILE+'" accept="application/pdf" type="file" style="display:none;" />\
@@ -65,9 +66,34 @@ function addNewFile() {
         </div>\
         </div>\
         </form>\
-        <div class="newplace" id="newplace'+NBFILE+'">\
-        </div>';
+        </div>\
+        <div class="newplace" id="newplace'+NBFILE+'"/>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
+
+}
+
+function createNewFile() {
+
+    NBFILE=NBFILE+1;
+    var MaDiv = document.createElement('div');
+    MaDiv.className='text-left';
+    MaDiv.id=('zoneMobile'+NBFILE);
+    MaDiv.innerHTML='<div class="contenant" id="contenant'+NBFILE+'">\
+    <p style="margin : 0 0 0 20px;">Selectionner un PDF à fusionner</p>\
+                        <form>\
+                        <i class="glyphicon glyphicon-trash trashbtn" id="trash'+NBFILE+'" onclick="trashFILE('+NBFILE+')"></i>\
+                        <i class="glyphicon glyphicon-move movebtn" id="tiretMove'+NBFILE+'" draggable="true"></i> \
+        <div class="input-group" style="margin-bottom:2px;">\
+        <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\
+        <div class="input-group-btn">\
+        <input id="fileInput'+NBFILE+'" accept="application/pdf" type="file" style="display:none;" />\
+        <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput('+NBFILE+');"/>\
+        </div>\
+        </div>\
+        </form>\
+        </div>\
+        <div class="newplace" id="newplace'+NBFILE+'"/>';
+    return MaDiv;
 
 }
 

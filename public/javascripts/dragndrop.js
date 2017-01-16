@@ -3,9 +3,8 @@
  */
 
 var NBFILE = 0;
-
+var IDREMOVE=0;
 var dropZone = document.getElementById('drop-zone');
-var newPlace = document.getElementById('newplace');
 
 
 //Fonction permettant d'ajouter plusieurs listener d'un coup
@@ -84,43 +83,51 @@ dropZone.addEventListener('drop', function(e) {
     return false;
 });
 
-
-newPlace.addEventListener('dragover', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    newPlace.className = "newplace dragover";
-
-});
-
-newPlace.addEventListener('dragleave', function(e) {
-    newPlace.className="newplace";
-});
-
-newPlace.addEventListener('drop', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-});
-
-
-
-
-
 function addListenerZoneMobile(id){
     document.getElementById('tiretMove'+id).addEventListener('dragstart', function (e) {
         var dt=e.dataTransfer;
-        dt.setDragImage(document.getElementById('zoneMobile'+id),70,50);
+        dt.setDragImage(document.getElementById('contenant'+id),70,50);
         dt.data=document.getElementById('inputPath'+id).value;
+        IDREMOVE=id;
     });
 
-    document.getElementById('tiretMove'+id).addEventListener('dragend', function (e) {
-        var zone_nbfile=document.getElementById('zone_nbFile');
-        var name=e.dataTransfer.data;
-        zone_nbfile.removeChild(document.getElementById('zoneMobile'+id));
-        addNewFile();
-        addListenerZoneMobile(NBFILE);
+    document.getElementById('newplace'+id).addEventListener('dragover', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        document.getElementById('newplace'+id).className="newplace dragover";
+    });
+
+    document.getElementById('newplace'+id).addEventListener('dragleave', function(e) {
+        var newplace=document.getElementById('newplace'+id);
+        newplace.className="newplace";
+    });
+
+    document.getElementById('newplace'+id).addEventListener('drop', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var newplace=document.getElementById('newplace'+id);
+        var zoneMobile=document.getElementById('zoneMobile'+id);
+        var div=createNewFile();
+        var name=document.getElementById('inputPath'+IDREMOVE).value;
+        newplace.className="newplace";
+        zoneMobile.parentNode.insertBefore(div,zoneMobile.nextSibling);
         document.getElementById('inputPath'+NBFILE).value=name;
+        document.getElementById('zone_nbFile').removeChild(document.getElementById('zoneMobile'+IDREMOVE));
+        addListenerZoneMobile(NBFILE);
+
     });
 
+}
+
+function insererDebut(){
+    var div=createNewFile();
+    var name=document.getElementById('inputPath'+IDREMOVE).value;
+    var zone_nbFile = document.getElementById("zone_nbFile");
+    //Compliqué de rajouter une division donc on prend la division mere, et c'est le 5eme élément, donc 4*nextElementSibling
+    zone_nbFile.insertBefore(div, zone_nbFile.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling);
+    document.getElementById('inputPath'+NBFILE).value=name;
+    document.getElementById('zone_nbFile').removeChild(document.getElementById('zoneMobile'+IDREMOVE));
+    addListenerZoneMobile(NBFILE);
 }
 
 addListenerZoneMobile(0);
