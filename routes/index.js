@@ -22,7 +22,6 @@ router.get('/extraction', function(req, res, next) {
 });
 
 
-
 router.post('/fusion/upload', function(req, res){
     // create an incoming form object
     console.log(req.files);
@@ -44,6 +43,7 @@ router.post('/fusion/upload', function(req, res){
 
     // once all the files have been uploaded, send a response to the client
     form.on('end', function() {
+
         res.redirect('/fusion');
     });
 

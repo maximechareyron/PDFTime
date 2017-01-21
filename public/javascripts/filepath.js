@@ -15,7 +15,7 @@ function searchinput(nbfile) {
             return;
         }
         document.getElementById('inputPath'+nbfile).value=name;
-
+        document.getElementById('inputPath'+nbfile).file=file;
         var reader = new FileReader();
 
         //attach event handlers here :
