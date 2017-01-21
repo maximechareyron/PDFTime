@@ -37,7 +37,14 @@ function searchinput(nbfile) {
 
         reader.readAsDataURL(file);
 
-
+        var fileinputs=document.getElementsByClassName('fileInput');
+        document.getElementById('validButton').disabled= false;
+        for(var i= 0; i < fileinputs.length; i++)
+        {
+            if(fileinputs[i].value==""){
+                document.getElementById('validButton').disabled= true;
+            }
+        }
     }
 }
 

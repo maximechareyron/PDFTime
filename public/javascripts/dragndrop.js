@@ -56,31 +56,13 @@ dropZone.addEventListener('drop', function(e) {
     var files = dt.files;
     for (var i=0; i<files.length; i++) {
         var file = files[i];
-        var reader = new FileReader();
         var name = file.name;
-        //attach event handlers here :
-        reader.addEventListener('loadend', function(e, file) {
-            var bin           = this.result;
-            var pdf=document.createElement('object');
-            pdf.type="application/pdf";
-            pdf.data=bin;
-            pdf.width="100%";
-            pdf.height="600";
-            pdf.id="pdf";
-            var oldpdf=document.getElementById('pdf');
-            if(oldpdf!=null) {
-                document.getElementById('zone-pdf').removeChild(oldpdf);
-            }
-            document.getElementById('zone-pdf').appendChild(pdf);
-            addNewFile();
-            addListenerZoneMobile(NBFILE);
-            document.getElementById('inputPath'+NBFILE).value=name;
 
-        });
-        reader.readAsDataURL(file);
+        addNewFile();
+        addListenerZoneMobile(NBFILE);
+        document.getElementById('inputPath'+NBFILE).value=name;
+        document.getElementById('inputPath'+NBFILE).file=file;
     }
-
-    return false;
 });
 
 function addListenerZoneMobile(id){
