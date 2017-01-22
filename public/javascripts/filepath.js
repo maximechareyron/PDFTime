@@ -46,12 +46,5 @@ function searchinput(nbfile) {
             }
         }
     }
-}
 
-function searchoutput() {
-    document.getElementById('fileOutput').click();
-    document.getElementById('fileOutput').onchange=function() {
-        var repertory = document.getElementById('fileOutput').files[0];
-        document.getElementById('outputPath').value=repertory.name;
-    }
 }

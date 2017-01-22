@@ -105,8 +105,7 @@ function insererDebut(){
     var div=createNewFile();
     var name=document.getElementById('inputPath'+IDREMOVE).value;
     var zone_nbFile = document.getElementById("zone_nbFile");
-    //Compliqué de rajouter une division donc on prend la division mere, et c'est le 5eme élément, donc 4*nextElementSibling
-    zone_nbFile.insertBefore(div, zone_nbFile.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling);
+    zone_nbFile.insertBefore(div, zone_nbFile.firstElementChild.nextSibling);
     document.getElementById('inputPath'+NBFILE).value=name;
     document.getElementById('zone_nbFile').removeChild(document.getElementById('zoneMobile'+IDREMOVE));
     addListenerZoneMobile(NBFILE);

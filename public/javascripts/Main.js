@@ -93,6 +93,10 @@ function createNewFile() {
 
 }
 
+function trashFILE(FileNum){
+    var element = document.getElementById('zoneMobile'+FileNum)// element à supprimer
+    element.parentNode.removeChild(element);
+}
 
 function alertSave(){
     var alertdiv=document.createElement('div');
