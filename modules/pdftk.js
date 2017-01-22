@@ -15,13 +15,14 @@ function executePDFtkCommand(cmd){
 }
 
 // Prend en paramètre un tableau de chemins de fichiers
-exports.fusion=function fusion(tabfic)
-{
+exports.fusion=function fusion(tabfic, onAfter){
     var listefichiers = "";
     for (var i=0; i<tabfic.length; i++)
         listefichiers = listefichiers + " " + "routes/uploads/"+tabfic[i];
     var cmd = "pdftk " + listefichiers + " cat output merge.pdf";
     executePDFtkCommand(cmd);
-    exec ('rm -rf routes/uploads/*');
+
+    onAfter();
 }
+
 
