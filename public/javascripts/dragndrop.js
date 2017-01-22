@@ -57,11 +57,11 @@ dropZone.addEventListener('drop', function(e) {
     for (var i=0; i<files.length; i++) {
         var file = files[i];
         var name = file.name;
-
         addNewFile();
         addListenerZoneMobile(NBFILE);
-        document.getElementById('inputPath'+NBFILE).value=name;
-        document.getElementById('inputPath'+NBFILE).file=file;
+        var inputpath=document.getElementById('inputPath'+NBFILE);
+        inputpath.value=name;
+        inputpath.file=file;
     }
 });
 
