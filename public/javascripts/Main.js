@@ -18,6 +18,38 @@ include("bootstrap.js");
 
 }(jQuery)
 
+var snake;
+//empeche le scroll avec les fleches, et fait apparaitre le snake
+$(document).keydown(function(e) {
+    var key = e.which;
+    var ar=new Array(33,34,35,36,37,38,39,40);
+    var snakear=new Array(115, 83, 110, 78, 97, 65, 107, 75, 101, 69);
+    if($.inArray(key,ar) > -1) {
+        e.preventDefault();
+    }
+    if($.inArray(key,snakear) > -1) {
+        if(key==115 || key == 83) {
+            snake=1;
+        }
+        if((key==110 || key == 78) && snake==1) {
+            snake=2;
+        }
+        if((key==97 || key == 65) && snake==2) {
+            snake=3;
+        }
+        if((key==107 || key == 75) && snake==3) {
+            snake=4;
+        }
+        if((key==101 || key == 69) && snake==4) {
+            appelerSnake();
+        }
+    }
+    else{
+        snake=0;
+    }
+
+    return true;
+});
 
 //Fonction pour la page extraction
 
@@ -112,5 +144,7 @@ function alertSave(){
         document.body.removeChild(alertdiv);
     }, 5000);
 
-
 }
+
+
+
