@@ -39,8 +39,10 @@ router.post('/fusion/upload', function(req, res){
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
-        fichiers[i]=file.name;
-        fs.rename(file.path, path.join(form.uploadDir, file.name));
+        filename=i+".pdf"
+        console.log(filename);
+        fichiers[i]=filename;
+        fs.rename(file.path, path.join(form.uploadDir, filename));
         i++;
     });
 
