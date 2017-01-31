@@ -25,6 +25,11 @@ router.get('/extraction', function(req, res, next) {
     res.render('extraction');
 });
 
+router.get('/formulaire', function(req, res, next) {
+    res.render('formulaire');
+});
+
+
 
 router.post('/fusion/upload', function(req, res){
     // create an incoming form object

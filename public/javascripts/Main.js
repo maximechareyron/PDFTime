@@ -12,6 +12,7 @@ include("filepath.js");
 include("pdf.js");
 include("pdf.worker.js");
 include("bootstrap.js");
+include("topAndBottom.js");
 
 + function($) {
     'use strict';
@@ -145,6 +146,3 @@ function alertSave(){
     }, 5000);
 
 }
-
-
-
