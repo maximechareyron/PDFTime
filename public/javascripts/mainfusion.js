@@ -16,11 +16,7 @@ include("topAndBottom.js");
 include("modules/p5.js");
 include("snake.js");
 include("mainSnake.js");
-
-+ function($) {
-    'use strict';
-
-}(jQuery)
+include("toggleBtn.js");
 
 var snake;
 //empeche le scroll avec les fleches, et fait apparaitre le snake
