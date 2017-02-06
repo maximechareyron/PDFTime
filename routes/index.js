@@ -32,10 +32,20 @@ router.get('/formulaire', function(req, res, next) {
 
 
 router.post('/fusion/upload', function(req, res){
-    // create an incoming form object
+    upload(req,res,function (fichiers){pdftk.fusion(fichiers);} );
+});
+
+router.post('/extraction/upload', function(req, res){
+
+    upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
+
+
+});
+
+function upload(req,res,fonctionPdftk){
     var fichiers=[];
     var i=0;
-
+    // create an incoming form object
     var form = new formidable.IncomingForm();
 
     // specify that we want to allow the user to upload multiple files in a single request
@@ -45,7 +55,6 @@ router.post('/fusion/upload', function(req, res){
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
         filename=i+".pdf"
-        console.log(filename);
         fichiers[i]=filename;
         fs.rename(file.path, path.join(form.uploadDir, filename));
         i++;
@@ -59,13 +68,13 @@ router.post('/fusion/upload', function(req, res){
     // once all the files have been uploaded, send a response to the client
     form.on('end', function(err) {
         async.series([
-            function (callback){pdftk.fusion(fichiers);  callback()}],
-            function(){res.sendFile('merge.pdf', {root: path.join(__dirname, '/..')},function (err){
+                function (callback){ fonctionPdftk(fichiers,req.body.numsPages) ;   callback()}],
+            function(){res.sendFile("result.pdf", {root: path.join(__dirname, '/..')},function (err){
                 if (err){
                     console.log(err);
                 }
                 else {
-                    exec('rm merge.pdf');
+                    exec('rm result.pdf');
                 }
             });});
 
@@ -75,7 +84,7 @@ router.post('/fusion/upload', function(req, res){
     // parse the incoming request containing the form data
     form.parse(req);
 
-});
+}
 
 
 

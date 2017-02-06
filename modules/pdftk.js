@@ -17,10 +17,17 @@ exports.fusion=function fusion(tabfic){
     var listefichiers = "";
     for (var i=0; i<tabfic.length; i++)
         listefichiers = listefichiers + " " + "routes/uploads/"+tabfic[i];
-    var cmd = "pdftk " + listefichiers + " cat output merge.pdf";
+    var cmd = "pdftk " + listefichiers + " cat output result.pdf";
     execSync(cmd);
     exec('rm routes/uploads/*');
 
 }
 
+exports.extraction=function extraction(fichier, nums){
+    fichier="routes/uploads/" +fichier;
+    var cmd="pdftk " + fichier+" cat " +nums+ "output result.pdf" ;
+    execSync(cmd);
+    exec('rm routes/uploads/*');
+
+}
 
