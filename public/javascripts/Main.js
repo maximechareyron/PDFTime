@@ -13,6 +13,9 @@ include("pdf.js");
 include("pdf.worker.js");
 include("bootstrap.js");
 include("topAndBottom.js");
+include("snake.js");
+include("p5.js");
+include("mainSnake.js");
 
 + function($) {
     'use strict';
