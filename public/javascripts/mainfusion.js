@@ -7,14 +7,14 @@ function include(fileName){
 
 //include("https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
 //include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
-include("dragndrop.js");
-include("filepath.js");
-include("pdf.js");
-include("pdf.worker.js");
-include("bootstrap.js");
+include("modules/bootstrap.js");
+include("fusionjs/dragndrop.js");
+include("fusionjs/filepath.js");
+include("modules/pdf.js");
+include("modules/pdf.worker.js");
 include("topAndBottom.js");
+include("modules/p5.js");
 include("snake.js");
-include("p5.js");
 include("mainSnake.js");
 
 + function($) {
@@ -56,8 +56,6 @@ $(document).keydown(function(e) {
 });
 
 //Fonction pour la page extraction
-
-
 function visibility(thingId)
 {
         var targetElement;
