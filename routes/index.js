@@ -42,6 +42,31 @@ router.post('/extraction/upload', function(req, res){
 
 });
 
+router.post('/formulaire/upload', function(req, res){
+
+    // create an incoming form object
+    var form = new formidable.IncomingForm();
+
+    // store all uploads in the /uploads directory
+    form.uploadDir = path.join(__dirname, '/uploads');
+    form.on('file', function (field, file) {
+        filename="formfic.pdf";
+        fs.rename(file.path, path.join(form.uploadDir, filename));
+    });
+
+    // log any errors that occur
+    form.on('error', function(err) {
+        console.log('An error has occured: \n' + err);
+    });
+
+    // parse the incoming request containing the form data
+    form.parse(req);
+
+    //upload(req,res,function (fic){pdftk.get_form_fields(fic);} );
+
+    res.render("formulaire");
+});
+
 function upload(req,res,fonctionPdftk){
     var fichiers=[];
     var i=0;
@@ -54,7 +79,7 @@ function upload(req,res,fonctionPdftk){
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
-        filename=i+".pdf"
+        filename=i+".pdf";
         fichiers[i]=filename;
         fs.rename(file.path, path.join(form.uploadDir, filename));
         i++;

@@ -31,3 +31,7 @@ exports.extraction=function extraction(fichier, nums){
 
 }
 
+exports.get_form_fields=function get_form_fields(fic){
+    var cmd="pdftk " + fic + "dump_data_fields form_fields.txt";
+    execSync(cmd);
+}
