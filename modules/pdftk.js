@@ -20,7 +20,6 @@ exports.fusion=function fusion(tabfic){
     var cmd = "pdftk " + listefichiers + " cat output result.pdf";
     execSync(cmd);
     exec('rm routes/uploads/*');
-
 }
 
 exports.extraction=function extraction(fichier, nums){
@@ -28,6 +27,15 @@ exports.extraction=function extraction(fichier, nums){
     var cmd="pdftk " + fichier+" cat " +nums+ "output result.pdf" ;
     execSync(cmd);
     exec('rm routes/uploads/*');
-
 }
+
+
+exports.get_form_fields=function get_form_fields(fic){
+    var cmd = "pdftk " + fic + " dump_data_fields form_fields.txt";
+    execSync(cmd);
+    exec('rm routes/uploads/*');
+}
+
+
+
 
