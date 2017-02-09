@@ -36,10 +36,7 @@ router.post('/fusion/upload', function(req, res){
 });
 
 router.post('/extraction/upload', function(req, res){
-
     upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
-
-
 });
 
 router.post('/formulaire/upload', function(req, res){
@@ -104,11 +101,8 @@ function upload(req,res,fonctionPdftk){
             });});
 
     });
-
-
     // parse the incoming request containing the form data
     form.parse(req);
-
 }
 
 
