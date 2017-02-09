@@ -22,6 +22,7 @@ exports.fusion=function fusion(tabfic){
     exec('rm routes/uploads/*');
 }
 
+// Prend en paramètre un fichier dont il faut extraire des pages
 exports.extraction=function extraction(fichier, nums){
     fichier="routes/uploads/" +fichier;
     var cmd="pdftk " + fichier+" cat " +nums+ "output result.pdf" ;
@@ -29,11 +30,10 @@ exports.extraction=function extraction(fichier, nums){
     exec('rm routes/uploads/*');
 }
 
-
-exports.get_form_fields=function get_form_fields(fic){
+// Prend en paramètre un fichier pdf et génère un fichier txt avec les champs
+exports.get_form_fields=function get_form_fields(fic) {
     var cmd = "pdftk " + fic + " dump_data_fields form_fields.txt";
     execSync(cmd);
-    exec('rm routes/uploads/*');
 }
 
 
