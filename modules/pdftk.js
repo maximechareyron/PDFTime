@@ -37,5 +37,8 @@ exports.get_form_fields=function get_form_fields(fic){
 }
 
 
-
-
+exports.remplirPdf=function remplirPdf(){
+    var cmd="pdftk /routes/uploads/formfic.pdf fill_form formrempli.xfdf output result.pdf";
+    execSync(cmd);
+    exec('rm routes/uploads/*');
+}

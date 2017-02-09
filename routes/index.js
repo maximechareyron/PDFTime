@@ -7,6 +7,7 @@ var util=require('util');
 var pdftk=require('../modules/pdftk');
 var async=require('async');
 var exec = require('child_process').exec;
+var qs=require('querystring');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -63,6 +64,23 @@ router.post('/formulaire/upload', function(req, res){
 
     res.render("formulaire");
 });
+
+router.post('/formRempli', function(req,res){
+    var post=qs.parse(req);
+    var nbElemen=req.body.nbElem;
+    var contenu= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+ "<xfdf xmlns=\"http://ns.adobe.com/xfdf/\" xml:space=\"preserve\">"+ " <fields>";
+    for (var i=0; i<=nbElemen;i++){
+        var nom="elem"+i;
+        contenu+="\<field name="+nom+"\><value>"+post[nom]+"\</field>";
+    }
+    contenu +="\</fields></xfdf>";
+    fs.writeFileSync("/routes/uploads/formrempli.xfdf",contenu,function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(data);});
+    pdftk.remplirPdf();
+})
 
 function upload(req,res,fonctionPdftk){
     var fichiers=[];
