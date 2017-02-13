@@ -1,0 +1,82 @@
+<script type="text/javascript" src="javascripts/topAndBottom.js"></script>
+<script type="text/javascript" >
+    requireTop();
+</script>
+<h3>Formulaire</h3>
+</div>
+</div>
+</div>
+</center>
+<!-- Fin de l'Entête et Début du corps de la page -->
+<!-- Code des balle de navigation -->
+<script type="text/javascript" src="javascripts/navball.js"></script>
+
+
+
+<div class="container col-sm-10 col-sm-offset-1">
+    <form action="/formulaire/upload" method="post" enctype="multipart/form-data">
+        <div class="row well">
+
+            <div class="col-sm-6 text-center" >
+                <div>
+                    <div class="col-sm-12 text-left" style="overflow-y:scroll;height:400px;">
+                        <div class="text-left"><b>Importer un fichier : </b></div>
+
+
+
+                        <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath" disabled style="cursor: text">
+                        <div class="input-group-btn">
+
+                            <input id="fileInput" class="fileInput" accept="application/pdf" type="file" name="upload" style="display:none;" />
+                            <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput();"/>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <hr>
+
+                <div class="row progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Annuler</button>
+                    <button type="submit" id="validButton" value="Upload" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Valider</button>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 visible-md visible-lg" style="text-align:center;">
+
+                <div class="row view-pdf" id="zone-pdf">
+
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+<div id="zone_champs">
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="javascripts/mainformulaire.js"></script>
+
+
+<!-- Fin du corps de la page et Début du bas de page -->
+<script type="text/javascript">
+    requireBottom();
+</script>

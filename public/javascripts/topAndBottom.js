@@ -26,9 +26,6 @@ function requireBottom(){
     document.write('\ <footer class="col-sm-12" style="background-color: #222;color:#ccc;">\
         Maxime CHAREYRON - Nahel CHAZOT - Alexandre DONNE - Jérome MASSARD - Ivan SCHMIDT \
         </footer>\
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>\
-        <script src="javascripts/bootstrap.js"></script>\
-        <script src="javascripts/Main.js"></script>\
         </body>\
         </html>\
         ');

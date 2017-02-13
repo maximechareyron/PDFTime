@@ -7,6 +7,7 @@ var util=require('util');
 var pdftk=require('../modules/pdftk');
 var async=require('async');
 var exec = require('child_process').exec;
+var qs=require('querystring');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -36,11 +37,50 @@ router.post('/fusion/upload', function(req, res){
 });
 
 router.post('/extraction/upload', function(req, res){
-
     upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
-
-
 });
+
+router.post('/formulaire/upload', function(req, res){
+
+    // create an incoming form object
+    var form = new formidable.IncomingForm();
+
+    // store all uploads in the /uploads directory
+    form.uploadDir = path.join(__dirname, '/uploads');
+    form.on('file', function (field, file) {
+        filename="formfic.pdf";
+        fs.rename(file.path, path.join(form.uploadDir, filename));
+    });
+
+    // log any errors that occur
+    form.on('error', function(err) {
+        console.log('An error has occured: \n' + err);
+    });
+
+    // parse the incoming request containing the form data
+    form.parse(req);
+
+    //upload(req,res,function (fic){pdftk.get_form_fields(fic);} );
+
+    res.render("formulaire");
+});
+
+router.post('/formRempli', function(req,res){
+    var post=qs.parse(req);
+    var nbElemen=req.body.nbElem;
+    var contenu= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+ "<xfdf xmlns=\"http://ns.adobe.com/xfdf/\" xml:space=\"preserve\">"+ " <fields>";
+    for (var i=0; i<=nbElemen;i++){
+        var nom="elem"+i;
+        contenu+="\<field name="+nom+"\><value>"+post[nom]+"\</field>";
+    }
+    contenu +="\</fields></xfdf>";
+    fs.writeFileSync("/routes/uploads/formrempli.xfdf",contenu,function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(data);});
+    pdftk.remplirPdf();
+})
 
 function upload(req,res,fonctionPdftk){
     var fichiers=[];
@@ -54,7 +94,7 @@ function upload(req,res,fonctionPdftk){
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
-        filename=i+".pdf"
+        filename=i+".pdf";
         fichiers[i]=filename;
         fs.rename(file.path, path.join(form.uploadDir, filename));
         i++;
@@ -79,11 +119,8 @@ function upload(req,res,fonctionPdftk){
             });});
 
     });
-
-
     // parse the incoming request containing the form data
     form.parse(req);
-
 }
 
 
