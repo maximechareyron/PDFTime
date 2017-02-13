@@ -32,7 +32,7 @@ exports.extraction=function extraction(fichier, nums){
 
 // Prend en paramètre un fichier pdf et génère un fichier txt avec les champs
 exports.get_form_fields=function get_form_fields(fic) {
-    var cmd = "pdftk " + fic + " dump_data_fields form_fields.txt";
+    var cmd = "pdftk " + fic + " dump_data_fields output form_fields.txt";
     execSync(cmd);
 }
 

@@ -41,6 +41,10 @@ router.post('/extraction/upload', function(req, res){
     upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
 });
 
+router.get('/formulaire2',function(req,res){
+    res.render('formulaire2');
+} );
+
 router.post('/formulaire/upload', function(req, res){
 
     // create an incoming form object
@@ -61,11 +65,17 @@ router.post('/formulaire/upload', function(req, res){
     // parse the incoming request containing the form data
     form.parse(req);
 
+    var tab;
     form.on('end', function(err) {
+        var io = require('socket.io')("/bin.www".server);
         pdftk.get_form_fields(path.join(form.uploadDir, "formfic.pdf"));
-        generate_form.generate_form();
+
+        async.series([
+                function (callback){  res.redirect("/formulaire2");   callback()}],
+            function(){tab=generate_form.generate_form();},function(){io.sockets.emit('tab',tab);});
+
     });
-    //res.render("formulaire");
+    //
 });
 
 router.post('/formRempli', function(req,res){
