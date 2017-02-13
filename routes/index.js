@@ -5,6 +5,7 @@ var fs=require('fs-extra');
 var path=require('path');
 var util=require('util');
 var pdftk=require('../modules/pdftk');
+var generate_form=require('../modules/generate_form');
 var async=require('async');
 var exec = require('child_process').exec;
 var qs=require('querystring');
@@ -48,7 +49,7 @@ router.post('/formulaire/upload', function(req, res){
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
-        filename="formfic.pdf";
+        var filename="formfic.pdf";
         fs.rename(file.path, path.join(form.uploadDir, filename));
     });
 
@@ -60,9 +61,11 @@ router.post('/formulaire/upload', function(req, res){
     // parse the incoming request containing the form data
     form.parse(req);
 
-    //upload(req,res,function (fic){pdftk.get_form_fields(fic);} );
-
-    res.render("formulaire");
+    form.on('end', function(err) {
+        pdftk.get_form_fields(path.join(form.uploadDir, "formfic.pdf"));
+        generate_form.generate_form();
+    });
+    //res.render("formulaire");
 });
 
 router.post('/formRempli', function(req,res){
