@@ -64,8 +64,8 @@ function createInputList(fieldName, tab){
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
     var html='';
-    for(var i=0; i<tab.size; i++){
-        if(tab[i].contains("FieldStateOption")) {
+    for(var i=0; i<tab.length; i++){
+        if(tab[i].indexOf("FieldStateOption") != -1) {
             html = html + '<option value="' + tab[i].substring(18, tab[i].size) + '">' + tab[i].substring(18, tab[i].size) + '</option>';
         }
     }
