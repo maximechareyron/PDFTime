@@ -1,0 +1,75 @@
+---
+FieldType: Text
+FieldName: Nom
+FieldNameAlt: Nom
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Pr&#233;nom
+FieldNameAlt: Pr&#233;nom
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Description
+FieldNameAlt: Description 
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: choix1
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: choix2
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: choix3
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: choix4
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: Group5
+FieldFlags: 49152
+FieldValue: f&#233;minin
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: f&#233;minin
+FieldStateOption: masculin
+---
+FieldType: Choice
+FieldName: age
+FieldFlags: 131072
+FieldValue: 19
+FieldValueDefault: 30
+FieldJustification: Left
+FieldStateOption: 18
+FieldStateOption: 19
+FieldStateOption: 20
+FieldStateOption: 21
+FieldStateOption: 22
+FieldStateOption: 23
+FieldStateOption: 24
+FieldStateOption: 25
+FieldStateOption: 26
+FieldStateOption: 27
+FieldStateOption: 28
+FieldStateOption: 29
+FieldStateOption: 30

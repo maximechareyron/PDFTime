@@ -10,6 +10,7 @@ var async=require('async');
 var exec = require('child_process').exec;
 var qs=require('querystring');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -31,8 +32,6 @@ router.get('/formulaire', function(req, res, next) {
     res.render('formulaire');
 });
 
-
-
 router.post('/fusion/upload', function(req, res){
     upload(req,res,function (fichiers){pdftk.fusion(fichiers);} );
 });
@@ -41,8 +40,8 @@ router.post('/extraction/upload', function(req, res){
     upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
 });
 
-router.post('/formulaire/upload', function(req, res){
 
+router.post('/uploadform2', function(req, res){
     // create an incoming form object
     var form = new formidable.IncomingForm();
 
@@ -63,9 +62,10 @@ router.post('/formulaire/upload', function(req, res){
 
     form.on('end', function(err) {
         pdftk.get_form_fields(path.join(form.uploadDir, "formfic.pdf"));
-        generate_form.generate_form();
+        var tab=generate_form.generate_form();
+        res.render('formulaire2', {tab: tab});
+
     });
-    //res.render("formulaire");
 });
 
 router.post('/formRempli', function(req,res){
