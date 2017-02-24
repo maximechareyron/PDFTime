@@ -15,16 +15,15 @@ include("formulairejs/parcourir.js");
 function createForm(tab) {
 
     for (var i=0; i<tab.length; i++){
-
         switch (tab[i][0]){
             case 'FieldType: Text':
-                createInputText(tab[i][1].substring(10, this.size)+" :");
+                createInputText(tab[i][1].substring(11, this.size)+" :");
                 break;
             case 'FieldType: Button':
-                createInputCheckbox(tab[i][1].substring(10, this.size)+" :");
+                createInputCheckbox(tab[i][1].substring(11, this.size)+" :");
                 break;
             case 'FieldType: Choice':
-                createInputList(tab[i][1].substring(10, this.size)+" :", tab[i]);
+                createInputList(tab[i][1].substring(11, this.size)+" :", tab[i]);
                 break;
 
         }
@@ -38,7 +37,7 @@ function createInputText(fieldName){
     p.setAttribute("style", "color: black");
     p.appendChild(document.createTextNode(fieldName));
     var input=document.createElement("input");
-    input.setAttribute("name", fieldName);
+    input.setAttribute("name", fieldName.substring(0,this.size-2));
     input.setAttribute("type","text");
     input.setAttribute("class", "form-control");
     document.getElementById('zone_form').appendChild(p);
@@ -51,7 +50,7 @@ function createInputCheckbox(fieldName){
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
     var input=document.createElement("input");
-    input.setAttribute("name", fieldName);
+    input.setAttribute("name", fieldName.substring(0,this.size-2));
     input.setAttribute("type","checkbox");
     document.getElementById('zone_form').appendChild(p);
     document.getElementById('zone_form').appendChild(input);
@@ -71,7 +70,7 @@ function createInputList(fieldName, tab){
     }
     var select=document.createElement("select");
     select.innerHTML =html;
-    select.setAttribute("name", fieldName);
+    select.setAttribute("name", fieldName.substring(0,this.size-2));
     document.getElementById('zone_form').appendChild(p);
     document.getElementById('zone_form').appendChild(select);
 }
