@@ -11,20 +11,28 @@
 <!-- Code des balle de navigation -->
 <script type="text/javascript" src="javascripts/navball.js"></script>
 
+<script type="text/javascript">
+    window.addEventListener('load', function(){
 
+        var tab = JSON.parse('<%- JSON.stringify(tab) %>');
+        createForm(tab);
+    });
+</script>
 
 <div class="container col-sm-10 col-sm-offset-1">
-    <form action="/formulaire/upload" method="post" enctype="multipart/form-data">
-        <div class="row well">
+    <div class="row well">
+        <div class="col-sm-6 text-center" >
+    <form action="/uploadform2/formRempli" method="post" enctype="application/x-www-form-urlencoded">
 
-            <div class="col-sm-6 text-center" >
+
+
                 <div>
                     <div id="zone_form">
+
                     </div>
                 </div>
 
 
-                <hr>
 
                 <div class="row progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
@@ -35,7 +43,7 @@
                     <button type="button" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Annuler</button>
                     <button type="submit" id="validButton" value="Upload" class="btn btn-lg btn-primary " style="margin-left:10%;margin-right:10%;">Valider</button>
                 </div>
-
+    </form>
             </div>
 
             <div class="col-sm-6 visible-md visible-lg" style="text-align:center;">
@@ -47,7 +55,7 @@
             </div>
 
         </div>
-    </form>
+
 </div>
 
 
@@ -59,13 +67,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
 
 
-<script type="text/javascript">
-    window.addEventListener('load', function(){
 
-        var tab = JSON.parse('<%- JSON.stringify(tab) %>');
-        createForm(tab);
-    });
-</script>
 
 
 

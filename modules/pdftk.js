@@ -31,14 +31,16 @@ exports.extraction=function extraction(fichier, nums){
 }
 
 // Prend en paramètre un fichier pdf et génère un fichier txt avec les champs
-exports.get_form_fields=function get_form_fields(fic) {
-    var cmd = "pdftk " + fic + " dump_data_fields output form_fields.txt";
+exports.get_form_fields=function get_form_fields() {
+    var cmd = "pdftk routes/uploads/formfic.pdf dump_data_fields output form_fields.txt";
     execSync(cmd);
 }
 
 
 exports.remplirPdf=function remplirPdf(){
-    var cmd="pdftk /routes/uploads/formfic.pdf fill_form formrempli.xfdf output result.pdf";
+    var cmd="pdftk /routes/uploads/formfic.pdf fill_form formrempli.fdf output result.pdf";
     execSync(cmd);
+    exec('rm formrempli.fdf ');
     exec('rm routes/uploads/*');
+
 }
