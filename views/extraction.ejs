@@ -18,6 +18,22 @@
 
         <form method="post" action="/extraction/upload" enctype="multipart/form-data">
             <div class="col-sm-6 text-center" >
+                    <div class="text-left"><b>Importer un fichier : </b></div>
+
+
+                    <div class="upload-drop-zone" id='drop-zone'>
+                        <i class="glyphicon glyphicon-download-alt" style="font-size: 30px; margin-right: 10px;"></i>
+                        <b id="zoneDropText">Glisser-Déposer un PDF.</b>
+                    </div>
+
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath" disabled style="cursor: text">
+                    <div class="input-group-btn">
+                        <input id="fileInput" class="fileInput" accept="application/pdf" type="file" name="upload" style="display:none;"/>
+                        <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput();"/>
+                    </div>
+                    </div>
+
 
                 <div class="form-group" style="margin-bottom:10%;margin-top:10%;">
                     <label class="col-sm-2 control-label">
@@ -55,7 +71,7 @@
 
 
 
-                <div class="col-sm-12" style="margin-bottom:10%;margin-top:30%;"><input type="checkbox"> Enregistrer chaque page dans un propre fichier</div>
+                <div class="col-sm-12" style="margin-bottom:5%;margin-top:5%;"><input type="checkbox"> Enregistrer chaque page dans un propre fichier</div>
 
 
 
@@ -86,18 +102,7 @@
         </form>
         <div class="col-md-6 visible-md visible-lg" style="text-align:center;overflow-y:scroll;height:600px; ">
 
-
-
             <div class="row view-pdf" id="zone-pdf">
-
-
-
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.1/processing-api.min.js"></script>
-
-
-                <input id='pdf' type='file'/>
-
-                <script type="text/javascript" src="javascripts/modules/pdf.js"></script>
 
 
             </div>
