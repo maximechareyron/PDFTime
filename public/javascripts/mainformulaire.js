@@ -17,13 +17,13 @@ function createForm(tab) {
     for (var i=0; i<tab.length; i++){
         switch (tab[i][0]){
             case 'FieldType: Text':
-                createInputText(tab[i][1].substring(11, this.size)+" :");
+                createInputText(tab[i][1].substring(11, this.size));
                 break;
             case 'FieldType: Button':
-                createInputCheckbox(tab[i][1].substring(11, this.size)+" :");
+                createInputCheckbox(tab[i][1].substring(11, this.size));
                 break;
             case 'FieldType: Choice':
-                createInputList(tab[i][1].substring(11, this.size)+" :", tab[i]);
+                createInputList(tab[i][1].substring(11, this.size), tab[i]);
                 break;
 
         }
@@ -35,9 +35,10 @@ function createInputText(fieldName){
     var p=document.createElement("p");
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
-    p.appendChild(document.createTextNode(fieldName));
+    p.appendChild(document.createTextNode(fieldName+" :"));
     var input=document.createElement("input");
-    input.setAttribute("name", fieldName.substring(0,this.size-2));
+    fieldName=fieldName
+    input.setAttribute("name", fieldName);
     input.setAttribute("type","text");
     input.setAttribute("class", "form-control");
     document.getElementById('zone_form').appendChild(p);
@@ -46,11 +47,11 @@ function createInputText(fieldName){
 
 function createInputCheckbox(fieldName){
     var p=document.createElement("p");
-    p.appendChild(document.createTextNode(fieldName));
+    p.appendChild(document.createTextNode(fieldName+ " :"));
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
     var input=document.createElement("input");
-    input.setAttribute("name", fieldName.substring(0,this.size-2));
+    input.setAttribute("name",fieldName );
     input.setAttribute("type","checkbox");
     document.getElementById('zone_form').appendChild(p);
     document.getElementById('zone_form').appendChild(input);
@@ -59,7 +60,7 @@ function createInputCheckbox(fieldName){
 
 function createInputList(fieldName, tab){
     var p=document.createElement("p");
-    p.appendChild(document.createTextNode(fieldName));
+    p.appendChild(document.createTextNode(fieldName+" :"));
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
     var html='';
@@ -70,7 +71,7 @@ function createInputList(fieldName, tab){
     }
     var select=document.createElement("select");
     select.innerHTML =html;
-    select.setAttribute("name", fieldName.substring(0,this.size-2));
+    select.setAttribute("name",fieldName );
     document.getElementById('zone_form').appendChild(p);
     document.getElementById('zone_form').appendChild(select);
 }

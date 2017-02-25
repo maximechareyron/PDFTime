@@ -72,12 +72,11 @@ router.post('/uploadform2', function(req, res){
 
 router.post('/uploadform2/formRempli', function(req,res){
     var post=req.body;
-
+    console.log(req.body);
     var contenu= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+ "<xfdf xmlns=\"http://ns.adobe.com/xfdf/\" xml:space=\"preserve\">"+ " <fields>";
     for (var cle in post){
         if (post[cle] == "on") {
             post[cle] = "Yes";
-            console.log("test");
         }
         contenu+="\<field name="+"\""+cle+"\""+"\><value>"+post[cle]+"\</value>\</field>";
     }
