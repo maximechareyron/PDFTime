@@ -12,6 +12,8 @@ include("modules/pdf.worker.js");
 include("topAndBottom.js");
 include("toggleBtn.js");
 include("extractionjs/itemPagePrev.js");
+include("extractionjs/dragndrop.js");
+include("extractionjs/parcourir.js");
 
 
 nbPagePdf =0 ;
@@ -25,9 +27,8 @@ PDFJS.disableWorker = true;
 //
 // Asynchronous download PDF as an ArrayBuffer
 //
-var pdf = document.getElementById('pdf');
-pdf.onchange = function(ev) {
-    if (file = document.getElementById('pdf').files[0]) {
+function display(input){
+    if (file = input.files[0]) {
         fileReader = new FileReader();
         fileReader.onload = function(ev) {
             cleanCanvas();
@@ -50,6 +51,7 @@ pdf.onchange = function(ev) {
         fileReader.readAsArrayBuffer(file);
     }
 }
+
 
 function visibilityHelp(thingID){
     var element = document.getElementById('btnHelp');
