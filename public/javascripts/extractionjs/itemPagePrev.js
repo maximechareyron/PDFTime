@@ -2,13 +2,6 @@
  * Created by jmddu_000 on 13/02/2017.
  */
 
-function include(fileName){
-    document.write("<script type='text/javascript' src='javascripts/"+fileName+"'></script>" );
-}
-
-include("modules/pdf.js");
-include("modules/pdf.worker.js");
-
 function newThumb(page,zone){
     var MaDiv = document.createElement('div');
     MaDiv.className='text-center col-sm-2';
@@ -16,7 +9,7 @@ function newThumb(page,zone){
     MaDiv.id=('thumb'+page);
     MaDiv.innerHTML='<div class="col-sm-2">\
     <canvas id="canvasPage'+page+'" style="border:1px solid black"></canvas>\
-    <input type="checkbox" value='+page+' id="page'+page+'">'+page+'</input>\
+    <input type="checkbox" value='+page+' id="page'+page+'" name="page'+page+'">'+page+'</input>\
     </div>';
     document.getElementById(zone).appendChild(MaDiv);
 }
@@ -36,7 +29,7 @@ function setPage2Canvas(pdf,i) {
         //
         // Render PDF page into canvas context
         //
-        var task = page.render({canvasContext: context, viewport: viewport})
+        var task = page.render({canvasContext: context, viewport: viewport});
         task.promise.then(function () {
             console.log(canvas.toDataURL('image/jpeg'));
         });

@@ -7,7 +7,6 @@ function include(fileName){
 }
 
 include("modules/bootstrap.js");
-include("modules/pdf.js");
 include("modules/pdf.worker.js");
 include("topAndBottom.js");
 include("toggleBtn.js");
@@ -24,19 +23,19 @@ PDFJS.disableWorker = true;
 //
 // Asynchronous download PDF as an ArrayBuffer
 //
+
+var nbPagePdf;
+
 function display(input){
     if (file = input.files[0]) {
         fileReader = new FileReader();
         fileReader.onload = function(ev) {
             cleanCanvas();
-            console.log(ev);
             PDFJS.getDocument(fileReader.result).then(function getPdfHelloWorld(pdf) {
-                //
-                // Fetch the first page
-                //
+
                 nbPagePdf = pdf.numPages;
-                console.log(pdf)
-                for(i = 1 ;i<=nbPagePdf;i++) {
+
+                for(var i = 1 ;i<=nbPagePdf;i++) {
                     newThumb(i, 'zone-pdf');
                     setPage2Canvas(pdf,i);
                 }

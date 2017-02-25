@@ -38,6 +38,7 @@ router.post('/fusion/upload', function(req, res){
 });
 
 router.post('/extraction/upload', function(req, res){
+    //Reste à récuperer "nums"
     upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
 });
 
