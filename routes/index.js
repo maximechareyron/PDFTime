@@ -38,8 +38,31 @@ router.post('/fusion/upload', function(req, res){
 });
 
 router.post('/extraction/upload', function(req, res){
-    //Reste à récuperer "nums"
-    upload(req,res,function (fichiers,nums){pdftk.extraction(fichiers,nums);} );
+    var filename;
+    var form = new formidable.IncomingForm();
+    // store all uploads in the /uploads directory
+    form.uploadDir = path.join(__dirname, '/uploads');
+    form.on('file', function (field, file) {
+        console.log("la");
+        filename="formextract.pdf";
+        fs.rename(file.path, path.join(form.uploadDir, filename));
+    });
+
+    form.on('error', function(err) {
+        console.log('An error has occured: \n' + err);
+    });
+
+    form.on("end", function (err) {
+        //Pour l'instant seulement en utilisant le nombre de pages donné dans l'input
+        var post=req.body;
+        pdftk.extraction(filename,post["numsPage"]);
+        res.sendFile("result.pdf", {root: path.join(__dirname, '/..')},function (err){
+            exec('rm result.pdf');
+        });
+    });
+
+    form.parse(req);
+
 });
 
 

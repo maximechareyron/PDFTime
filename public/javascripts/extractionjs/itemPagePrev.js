@@ -31,7 +31,7 @@ function setPage2Canvas(pdf,i) {
         //
         var task = page.render({canvasContext: context, viewport: viewport});
         task.promise.then(function () {
-            console.log(canvas.toDataURL('image/jpeg'));
+            //console.log(canvas.toDataURL('image/jpeg'));
         });
 
     });
