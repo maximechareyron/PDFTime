@@ -2,7 +2,7 @@
  * Created by jmddu_000 on 31/01/2017.
  */
 
-function requireTop(){
+function requireTop(title){
     document.write('\
         <!DOCTYPE html>\
         <html lang="fr" xmlns="http://www.w3.org/1999/html">\
@@ -19,7 +19,12 @@ function requireTop(){
             <form method="get" action="/"><input type="image" src="images/logo.svg" alt="logo" width="100" class="col-sm-3"/></form>\
             <div class="col-sm-4">\
             <h1>PDF Time</h1>\
-    ');
+            <h3>'+title+'<h3>\
+        </div>\
+        </div>\
+        </div>\
+        </center>\
+        ');
 }
 
 function requireBottom(){
