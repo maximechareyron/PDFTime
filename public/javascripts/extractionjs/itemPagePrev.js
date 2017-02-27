@@ -40,7 +40,7 @@ function setPage2Canvas(pdf,i) {
 
 
 ER = function convertChoice2ER(nbPages, fileName){
-    expressionPdftk = "pdftk " + fileName + " cat ";
+    var expressionPdftk = "pdftk " + fileName + " cat ";
 
     for(var i=0;i<nbPages;i++){
         if (document.getElementById("page"+i).checked == true)
