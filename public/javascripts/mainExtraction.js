@@ -56,7 +56,7 @@ function visibilityHelp(thingID){
     var element = document.getElementById('btnHelp');
 
 
-    if(element.className == "btn btn-md btn-circle btn-default") {
+    if(element.className.indexOf("btn btn-md btn-circle btn-default") != -1) {
         element.className = "btn btn-md btn-circle btn-primary";
         document.getElementById(thingID).style.display = "";
     }
@@ -74,4 +74,9 @@ function cleanCanvas() {
             document.getElementById('zone-pdf').removeChild(thumb);
         }
     }
+}
+
+function validation(){
+    convertChoice2ER(nbPagePdf);
+    document.getElementById("send").click();
 }
