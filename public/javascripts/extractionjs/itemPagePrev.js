@@ -8,8 +8,8 @@ function newThumb(page,zone){
     MaDiv.style.color = "black";
     MaDiv.id=('thumb'+page);
     MaDiv.innerHTML='<div class="col-sm-2">\
-    <canvas id="canvasPage'+page+'" style="border:1px solid black"></canvas>\
-    <input type="checkbox" id="page'+page+'" name="page'+page+'" />'+page+'\
+    <canvas id="canvasPage'+page+'" style="border:1px solid black" onclick="check('+page+');" onblur="onLostFocus();"></canvas>\
+    <input type="checkbox" id="page'+page+'" name="page'+page+'">'+page+'\
     </div>';
     document.getElementById(zone).appendChild(MaDiv);
 }
@@ -22,7 +22,6 @@ function setPage2Canvas(pdf,i) {
         // Prepare canvas using PDF page dimensions
         //
         var canvas = document.getElementById("canvasPage"+i);
-        <!-- Ne veux pas fonctionner -->
         var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
@@ -37,6 +36,27 @@ function setPage2Canvas(pdf,i) {
     });
 }
 
+function check(num){
+    if( document.getElementById("numsPages").value == null)
+        var op = "";
+    else
+        op = document.getElementById("numsPages").value;
+
+    if(document.getElementById("page"+num).checked == true){
+        document.getElementById("page"+num).checked = false;
+        op = op.replace(" "+num,"");
+    }
+    else{
+        document.getElementById("page" + num).checked = true;
+        op += " "+num;
+    }
+
+    document.getElementById("numsPages").value = op;
+}
+
+function onLostFocus(){
+    var champ = document.getElementById("numsPages");
+}
 
 function convertChoice2ER(nbPages){
     var extractPagesString = "";
@@ -44,8 +64,7 @@ function convertChoice2ER(nbPages){
         if (document.getElementById("page"+i).checked == true)
             extractPagesString += i+" ";
     }
-    document.getElementById("numsPages").setAttribute("value",extractPagesString);
-
+    document.getElementById("numsPages").setAttribute("value", extractPagesString);
 }
 
 

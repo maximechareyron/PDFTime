@@ -29,6 +29,7 @@ PDFJS.disableWorker = true;
 
 var nbPagePdf;
 
+
 function display(input){
     if (file = input.files[0]) {
         fileReader = new FileReader();
@@ -68,6 +69,7 @@ function visibilityHelp(thingID){
 }
 
 function cleanCanvas() {
+    document.getElementById("numsPages").value = "";
     for(var i=1;i<=nbPagePdf;i++) {
         var thumb = document.getElementById("thumb"+i);
         if (thumb != null) {
@@ -78,5 +80,5 @@ function cleanCanvas() {
 
 function validation(){
     convertChoice2ER(nbPagePdf);
-    document.getElementById("send").click();
+    //document.getElementById("send").click();
 }
