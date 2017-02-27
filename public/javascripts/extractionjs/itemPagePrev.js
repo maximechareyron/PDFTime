@@ -9,7 +9,7 @@ function newThumb(page,zone){
     MaDiv.id=('thumb'+page);
     MaDiv.innerHTML='<div class="col-sm-2">\
     <canvas id="canvasPage'+page+'" style="border:1px solid black"></canvas>\
-    <input type="checkbox" value='+page+' id="page'+page+'" name="page'+page+'">'+page+'</input>\
+    <input type="checkbox" id="page'+page+'" name="page'+page+'" />'+page+'\
     </div>';
     document.getElementById(zone).appendChild(MaDiv);
 }
@@ -38,17 +38,14 @@ function setPage2Canvas(pdf,i) {
 }
 
 
-
-ER = function convertChoice2ER(nbPages, fileName){
-    var expressionPdftk = "pdftk " + fileName + " cat ";
-
-    for(var i=0;i<nbPages;i++){
+function convertChoice2ER(nbPages){
+    var extractPagesString = "";
+    for(var i=1;i<nbPages;i++){
         if (document.getElementById("page"+i).checked == true)
-            expressionPdftk += " "+i;
+            extractPagesString += i+" ";
     }
+    document.getElementById("numsPages").setAttribute("value",extractPagesString);
 
-    expressionPdftk += " output extraction.pdf";
-    return expressionPdftk
 }
 
 

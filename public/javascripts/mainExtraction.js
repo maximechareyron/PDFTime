@@ -10,6 +10,9 @@ include("modules/bootstrap.js");
 include("modules/pdf.worker.js");
 include("topAndBottom.js");
 include("toggleBtn.js");
+include("modules/p5.js");
+include("snake.js");
+include("navball.js");
 include("extractionjs/itemPagePrev.js");
 include("extractionjs/dragndrop.js");
 include("extractionjs/parcourir.js");
@@ -71,4 +74,9 @@ function cleanCanvas() {
             document.getElementById('zone-pdf').removeChild(thumb);
         }
     }
+}
+
+function validation(){
+    convertChoice2ER(nbPagePdf);
+    document.getElementById("send").click();
 }
