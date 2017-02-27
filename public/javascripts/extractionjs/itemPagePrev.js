@@ -39,16 +39,14 @@ function setPage2Canvas(pdf,i) {
 
 
 
-ER = function convertChoice2ER(nbPages, fileName){
-    expressionPdftk = "pdftk " + fileName + " cat ";
-
+function convertChoice2ER(nbPages, fileName){
+    var extractPagesString = "";
     for(var i=0;i<nbPages;i++){
         if (document.getElementById("page"+i).checked == true)
-            expressionPdftk += " "+i;
+            extractPagesString += " "+i;
     }
+    document.getElementById("numsPages").textContent = extractPagesString;
 
-    expressionPdftk += " output extraction.pdf";
-    return expressionPdftk
 }
 
 
