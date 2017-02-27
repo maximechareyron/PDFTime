@@ -40,10 +40,10 @@ function setPage2Canvas(pdf,i) {
 
 
 function convertChoice2ER(nbPages, fileName){
-    var extractPagesString = "";
+    extractPagesString = "";
     for(var i=0;i<nbPages;i++){
         if (document.getElementById("page"+i).checked == true)
-            extractPagesString += " "+i;
+            extractPagesString += i+" ";
     }
     document.getElementById("numsPages").textContent = extractPagesString;
 
