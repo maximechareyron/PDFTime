@@ -83,6 +83,7 @@ function createInputRadio(fieldName, tab){
             titre.setAttribute("style", "color: black");
             var input=document.createElement("input");
             input.setAttribute("name",fieldName );
+            input.setAttribute("value", tab[i].substring(18, tab[i].size));
             input.setAttribute("type","radio");
             document.getElementById('zone_form').appendChild(div);
             div.appendChild(titre);
