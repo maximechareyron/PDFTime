@@ -10,6 +10,7 @@ var async=require('async');
 var exec = require('child_process').exec;
 var qs=require('querystring');
 var bodyParser=require('body-parser');
+var multer = require('multer');
 
 
 /* GET home page. */
@@ -34,28 +35,76 @@ router.get('/formulaire', function(req, res, next) {
 });
 
 router.post('/fusion/upload', function(req, res){
-    upload(req,res,function (fichiers){pdftk.fusion(fichiers);} );
+    upload(req,res,function (fichiers){pdftk.fusion(fichiers);});
 });
 
-router.post('/extraction/upload', function(req, res){
+/*
+router.post('/extraction/upload', multer({ dest: './routes/uploads/'}).single('upl'), function(req,res){
+    console.log(req.body); //form fields
+    console.log(req.file); //form files
+    res.status(204).end();
+});
+*/
+
+/* router.post('/extraction/upload', function(req, res){
+    /*
     var filename;
+
+    var body ='';
+    req.on('data', function(data){
+        body += data;
+    });
+    req.on('end', function(){
+        var post = qs.parse(body);
+        console.log(post[numsPages]);
+    });
+
+    /*
+     var form = new formidable.IncomingForm();
+     // store all uploads in the /uploads directory
+     form.uploadDir = path.join(__dirname, '/uploads');
+     form.on('file', function (field, file) {
+     console.log("la");
+     filename="formextract.pdf";
+     fs.rename(file.path, path.join(form.uploadDir, filename));
+     });
+
+     form.on('error', function(err) {
+     console.log('An error has occured: \n' + err);
+     });
+
+     form.on("end", function (err) {
+     //Pour l'instant seulement en utilisant le nombre de pages donné dans l'input
+     var post=req.body;
+     pdftk.extraction(filename,post["numsPage"]);
+     res.sendFile("result.pdf", {root: path.join(__dirname, '/..')},function (err){
+     exec('rm result.pdf');
+     });
+     });
+
+     form.parse(req);
+});
+*/
+
+router.post('/extraction/upload', function(req, res){
+    var fields = [];
     var form = new formidable.IncomingForm();
-    // store all uploads in the /uploads directory
+
     form.uploadDir = path.join(__dirname, '/uploads');
-    form.on('file', function (field, file) {
-        console.log("la");
-        filename="formextract.pdf";
+
+    form.on('field', function(field, value){
+        console.log(field);
+        console.log(value);
+       fields[field]=value;
+    });
+
+    form.on('file', function(name, file){
+        var filename="extract.pdf";
         fs.rename(file.path, path.join(form.uploadDir, filename));
     });
 
-    form.on('error', function(err) {
-        console.log('An error has occured: \n' + err);
-    });
-
-    form.on("end", function (err) {
-        //Pour l'instant seulement en utilisant le nombre de pages donné dans l'input
-        var post=req.body;
-        pdftk.extraction(filename,post["numsPage"]);
+    form.on('end', function(){
+        pdftk.extraction(fields['numsPages']);
         res.sendFile("result.pdf", {root: path.join(__dirname, '/..')},function (err){
             exec('rm result.pdf');
         });
@@ -64,7 +113,6 @@ router.post('/extraction/upload', function(req, res){
     form.parse(req);
 
 });
-
 
 router.post('/uploadform2', function(req, res){
     // create an incoming form object
@@ -124,7 +172,7 @@ function upload(req,res,fonctionPdftk){
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
     form.on('file', function (field, file) {
-        filename=i+".pdf";
+        var filename=i+".pdf";
         fichiers[i]=filename;
         fs.rename(file.path, path.join(form.uploadDir, filename));
         i++;
