@@ -53,10 +53,5 @@ dropZone.addEventListener('drop', function(e) {
 
     var files = dt.files;
 
-    var file = files[0];
-    var name = file.name;
-    var inputpath=document.getElementById('inputPath');
-    inputpath.value=name;
-
     display(dt);
 });
