@@ -1,12 +1,7 @@
 <script type="text/javascript" src="javascripts/topAndBottom.js" xmlns="http://www.w3.org/1999/html"></script>
 <script type="text/javascript" >
-    requireTop();
+    requireTop("Extraction  x");
 </script>
-<h3>Extraction</h3>
-</div>
-</div>
-</div>
-</center>
 <!-- Fin de l'Entête et Début du corps de la page -->
 
 <!-- Code des balle de navigation -->
@@ -23,9 +18,13 @@
                         <i class="glyphicon glyphicon-download-alt" style="font-size: 30px; margin-right: 10px;"></i>
                         <b id="zoneDropText">Glisser-Déposer un PDF.</b>
                     </div>
-
-                    <input type="file" class="form-control" placeholder="Chemin vers fichier" id="inputPath" name="inputPath"/>
-
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Chemin vers fichier" disabled="true" id="inputPath"/>
+                        <div class="input-group-btn">
+                            <input type="file" class="btn btn-defautl" style="display:none;" placeholder="Chemin vers fichier" id="fileInput" name="inputPath"/>
+                            <input type="button" class="btn btn-default" onclick="searchinput();" value="Parcourir">
+                        </div>
+                    </div>
                 <div class="form-group" style="margin-bottom:10%;margin-top:10%;">
                     <label class="col-sm-2 control-label">
                         Page(s):</label>
