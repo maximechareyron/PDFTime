@@ -8,7 +8,7 @@ function newThumb(page,zone){
     MaDiv.style.color = "black";
     MaDiv.id=('thumb'+page);
     MaDiv.innerHTML='<div class="col-sm-2">\
-    <canvas id="canvasPage'+page+'" style="border:1px solid black" onclick="check('+page+');" onblur="onLostFocus();"></canvas>\
+    <canvas id="canvasPage'+page+'" style="border:1px solid black" onclick="check('+page+');"></canvas>\
     <input type="checkbox" id="page'+page+'" name="page'+page+'">'+page+'\
     </div>';
     document.getElementById(zone).appendChild(MaDiv);
@@ -53,18 +53,6 @@ function check(num){
 
     document.getElementById("numsPages").value = op;
 }
-/*
-function onLostFocus(){
-    var champ = document.getElementById("numsPages");
-}*/
-/*
-function convertChoice2ER(nbPages){
-    var extractPagesString = "";
-    for(var i=1;i<nbPages;i++){
-        if (document.getElementById("page"+i).checked == true)
-            extractPagesString += i+" ";
-    }
-    document.getElementById("numsPages").setAttribute("value", extractPagesString);
-}
 
-*/
+
+

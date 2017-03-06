@@ -68,6 +68,14 @@ function visibilityHelp(thingID){
 
 }
 
+function onLostFocus(){
+    var champ = document.getElementById("numsPages").value;
+    champ = champ.replace(/[a-zA-Z]/g,' ');
+    document.getElementById("numsPages").value = champ;
+}
+
+
+
 function cleanCanvas() {
     document.getElementById("numsPages").value = "";
     for(var i=1;i<=nbPagePdf;i++) {
