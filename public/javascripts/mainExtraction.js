@@ -29,13 +29,6 @@ PDFJS.disableWorker = true;
 
 var nbPagePdf;
 
-var parcourBtn = document.getElementById("inputPath");
-
-parcourBtn.onchange = function(){
-    display(parcourBtn);
-};
-
-
 function display(input){
     if (file = input.files[0]) {
         fileReader = new FileReader();
@@ -84,8 +77,3 @@ function cleanCanvas() {
         }
     }
 }
-/*
-function validation(){
-    convertChoice2ER(nbPagePdf);
-    document.getElementById("send").click();
-}*/

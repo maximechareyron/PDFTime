@@ -53,10 +53,10 @@ function check(num){
 
     document.getElementById("numsPages").value = op;
 }
-
+/*
 function onLostFocus(){
     var champ = document.getElementById("numsPages");
-}
+}*/
 /*
 function convertChoice2ER(nbPages){
     var extractPagesString = "";
