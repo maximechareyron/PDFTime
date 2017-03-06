@@ -57,7 +57,7 @@ function check(num){
 function onLostFocus(){
     var champ = document.getElementById("numsPages");
 }
-
+/*
 function convertChoice2ER(nbPages){
     var extractPagesString = "";
     for(var i=1;i<nbPages;i++){
@@ -67,4 +67,4 @@ function convertChoice2ER(nbPages){
     document.getElementById("numsPages").setAttribute("value", extractPagesString);
 }
 
-
+*/

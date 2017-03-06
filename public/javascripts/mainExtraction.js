@@ -29,11 +29,17 @@ PDFJS.disableWorker = true;
 
 var nbPagePdf;
 
+var parcourBtn = document.getElementById("inputPath");
+
+parcourBtn.onchange = function(){
+    display(parcourBtn);
+};
+
 
 function display(input){
     if (file = input.files[0]) {
         fileReader = new FileReader();
-        fileReader.onload = function(ev) {
+        fileReader.onload = function() {
             cleanCanvas();
             PDFJS.getDocument(fileReader.result).then(function getPdfHelloWorld(pdf) {
 
@@ -51,6 +57,7 @@ function display(input){
         fileReader.readAsArrayBuffer(file);
     }
 }
+
 
 
 function visibilityHelp(thingID){
@@ -77,8 +84,8 @@ function cleanCanvas() {
         }
     }
 }
-
+/*
 function validation(){
     convertChoice2ER(nbPagePdf);
-    //document.getElementById("send").click();
-}
+    document.getElementById("send").click();
+}*/

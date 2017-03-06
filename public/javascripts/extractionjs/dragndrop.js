@@ -50,13 +50,10 @@ dropZone.addEventListener('drop', function(e) {
 
 
     // Récupération des données :
-
-    var files = dt.files;
-
-    var file = files[0];
-    var name = file.name;
-    var inputpath=document.getElementById('inputPath');
-    inputpath.value=name;
+    var file = dt.files[0];
+    var inputpath = document.getElementById("inputPath");
+    inputpath.name = file.name;
+    inputpath.file = file;
 
     display(dt);
 });
