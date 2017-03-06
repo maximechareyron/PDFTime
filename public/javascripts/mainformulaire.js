@@ -12,6 +12,12 @@ include("toggleBtn.js");
 include("formulairejs/dragndrop.js");
 include("formulairejs/parcourir.js");
 
+function htmlToString(string) {
+    var str=string.replace('&#233;', "é");
+    return str;
+}
+
+
 function createForm(tab) {
 
     for (var i=0; i<tab.length; i++){
@@ -37,6 +43,7 @@ function createForm(tab) {
 
 
 function createInputText(fieldName){
+    fieldName=htmlToString(fieldName);
     var div=document.createElement("div");
     div.setAttribute("style","margin:5;");
     var p=document.createElement("p");
@@ -53,6 +60,7 @@ function createInputText(fieldName){
 }
 
 function createInputCheckbox(fieldName){
+    fieldName=htmlToString(fieldName);
     var div=document.createElement("div");
     div.setAttribute("style","display:inline-block; margin:5;");
     var p=document.createElement("p");
@@ -68,6 +76,7 @@ function createInputCheckbox(fieldName){
 }
 
 function createInputRadio(fieldName, tab){
+    fieldName=htmlToString(fieldName);
     var p=document.createElement("p");
     p.appendChild(document.createTextNode(fieldName+ " :"));
     p.setAttribute("class", "text-left");
@@ -78,7 +87,8 @@ function createInputRadio(fieldName, tab){
             var div=document.createElement("div");
             div.setAttribute("style","display:inline-block; margin:5;");
             var titre=document.createElement("p");
-            titre.appendChild(document.createTextNode(tab[i].substring(18, tab[i].size)+ " :"));
+            var textTitre=htmlToString(tab[i].substring(18, tab[i].size));
+            titre.appendChild(document.createTextNode(textTitre+ " :"));
             titre.setAttribute("class", "text-left");
             titre.setAttribute("style", "color: black");
             var input=document.createElement("input");
@@ -93,6 +103,7 @@ function createInputRadio(fieldName, tab){
 }
 
 function createInputList(fieldName, tab){
+    fieldName=htmlToString(fieldName);
     var div=document.createElement("div");
     div.setAttribute("style","margin:5;");
     var p=document.createElement("p");
@@ -102,12 +113,12 @@ function createInputList(fieldName, tab){
     var html='';
     for(var i=0; i<tab.length; i++){
         if(tab[i].indexOf("FieldStateOption") != -1) {
-            html = html + '<option value="' + tab[i].substring(18, tab[i].size) + '">' + tab[i].substring(18, tab[i].size) + '</option>';
+            html = html + '<option value="' + tab[i].substring(18, tab[i].size) + '">' + htmlToString(tab[i].substring(18, tab[i].size)) + '</option>';
         }
     }
     var select=document.createElement("select");
     select.innerHTML =html;
-    select.setAttribute("name",fieldName );
+    select.setAttribute("name",fieldName);
     document.getElementById('zone_form').appendChild(div);
     div.appendChild(p);
     div.appendChild(select);
