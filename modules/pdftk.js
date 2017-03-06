@@ -24,7 +24,7 @@ exports.fusion=function fusion(tabfic){
 
 // Prend en paramètre un fichier dont il faut extraire des pages
 exports.extraction=function extraction(nums){
-    fichier="routes/uploads/extract.pdf";
+    var fichier="routes/uploads/extract.pdf";
     var cmd="pdftk " + fichier + " cat " + nums + " output result.pdf" ;
     execSync(cmd);
     exec('rm routes/uploads/*');
@@ -42,5 +42,4 @@ exports.remplirPdf=function remplirPdf(){
     execSync(cmd);
     exec('rm formrempli.fdf ');
     exec('rm routes/uploads/*');
-
 }
