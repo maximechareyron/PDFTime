@@ -26,13 +26,12 @@ padding :0;
 
 .upload-drop-zone {
     color:#ccc;
-    height: 200px;
+    height: 500px;
     border-width: 2px;
     margin-bottom: 20px;
     border-style: dashed;
     border-color:#ccc;
-    line-height: 200px;
-    text-align: center
+    text-align: center;
 }
 .upload-drop-zone.drop {
     color: #222;
@@ -40,13 +39,12 @@ padding :0;
 }
 
 .upload-drop-zone.dragover {
-    height: 200px;
+    height: 500px;
     border-width: 2px;
     margin-bottom: 20px;
     color:#222;
     border-style: dashed;
     border-color:#222;
-    line-height: 200px;
     text-align: center;
     background-color: white;
 }
@@ -129,4 +127,17 @@ font-size:12px;
 .btn-pdf{
     color: #ccc;
     background-color: #be3126;
+}
+
+
+
+#input {
+    /*Important*/
+    /*position: absolute;*/
+    /*Important*/
+    cursor: pointer;
+    left: 0px;
+    top: 0px;
+    /*Important This is only comment out for demonstration purposes.*/
+    opacity:0;
 }

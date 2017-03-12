@@ -56,7 +56,6 @@ function display(input){
 function visibilityHelp(thingID){
     var element = document.getElementById('btnHelp');
 
-
     if(element.className.indexOf("btn btn-md btn-circle btn-default") != -1) {
         element.className = "btn btn-md btn-circle btn-primary";
         document.getElementById(thingID).style.display = "";

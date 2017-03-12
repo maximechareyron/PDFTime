@@ -2,7 +2,9 @@
  * Created by jmddu_000 on 24/02/2017.
  */
 
-var dropZone=document.getElementById('drop-zone');
+//Sources:
+/*
+var dropZone=document.getElementById('zone-pdf');
 
 //Fonction permettant d'ajouter plusieurs listener d'un coup
 function addListenerMulti(el, s, fn) {
@@ -18,22 +20,33 @@ addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', functi
 });
 
 
+var maZone = $("#" + 'zone-pdf');
+var input =maZone.find('input');
+
 dropZone.addEventListener('dragover', function(e) {
     e.stopPropagation();
     e.preventDefault();
-    dropZone.className = "upload-drop-zone dragover";
+    dropZone.className = "upload-drop-zone row view-pdf dragover";
 
-});
+    var x = e.pageX;
+    var y = e.pageY;
 
-dropZone.addEventListener('dragleave', function(e) {
-    dropZone.className="upload-drop-zone";
+    var ooleft = maZone.offset().left;
+    var ooright = maZone.outerWidth + ooleft;
+    var ootop = maZone.offset().top;
+    var oobottom = maZone.outerHeight + ootop;
+
+    if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
+        input.offset({ top: y - 15, left: x - 100 });
+    } else {
+        input.offset({ top: -400, left: -400 });
+    }
+
 });
 
 
 dropZone.addEventListener('drop', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    var dt    = e.dataTransfer;
+    var dt = e.dataTransfer;
     if(dt.files.length!=0) {
         var name = dt.files[0].name;
     }
@@ -48,15 +61,81 @@ dropZone.addEventListener('drop', function(e) {
         $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
     }, 5000);
 
+ document.getElementById('drop-zone').style.display = "none";
+
 
     // Récupération des données :
     var file = dt.files[0];
     var inputpath = document.getElementById("inputPath");
-    inputpath.name = file.name;
+    inputpath.value = file.name;
     inputpath.file = file;
 
-    var inputFile = document.getElementById("inputFile");
-    inputFile = dt;
-
     display(dt);
-});
+},true);
+
+*/
+
+//http://stackoverflow.com/questions/8006715/drag-drop-files-into-standard-html-file-input
+
+
+$(function () {
+    var dropZoneId = "zone-pdf";
+    var dragNDropZone = document.getElementById(dropZoneId);
+    var dropZone = $("#" + dropZoneId);
+    var ooleft = dropZone.offset().left;
+    var ooright = dropZone.outerWidth() + ooleft;
+    var ootop = dropZone.offset().top;
+    var oobottom = dropZone.outerHeight() + ootop;
+    var inputFile = dropZone.find("input");
+    dragNDropZone.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        dragNDropZone.className = "upload-drop-zone row view-pdf dragover";
+
+        var x = e.pageX;
+        var y = e.pageY;
+
+        if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
+            inputFile.offset({ top: y - 15, left: x - 100 });
+        } else {
+            inputFile.offset({ top: -400, left: -400 });
+        }
+
+    }, true);
+
+
+    dragNDropZone.addEventListener("drop", function (e) {
+        var input = document.getElementById('input');
+
+        if(input.files.length!=0) {
+            var name = input.files[0].name;
+        }
+        var extension = name.split('.').pop();
+        if (!/(pdf)$/ig.test(extension)) {
+            alert("Vous ne pouvez ajouter que des fichiers PDF.");
+            dropZone.className="upload-drop-zone";
+            return;
+        }
+
+        dropZone.className="upload-drop-zone";
+        $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
+        window.setTimeout(function(){
+            $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
+        }, 5000);
+
+
+        document.getElementById('drop-zone').style.display = "none";
+        dragNDropZone.className="upload-drop-zone row view-pdf";
+        dragNDropZone.style.border = "none";
+
+        // Récupération des données :
+        var file = input.files[0];
+        var inputpath = document.getElementById("inputPath");
+        inputpath.value = file.name;
+
+        display(input);
+
+    }, true);
+
+})
