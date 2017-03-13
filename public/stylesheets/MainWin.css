@@ -131,9 +131,9 @@ font-size:12px;
 
 
 
-#input {
+.inputfile {
     /*Important*/
-    /*position: absolute;*/
+    position: absolute;
     /*Important*/
     cursor: pointer;
     left: 0px;

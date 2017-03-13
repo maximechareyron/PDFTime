@@ -4,8 +4,8 @@
 
 var NBFILE = 0;
 var IDREMOVE=0;
-var dropZone = document.getElementById('drop-zone');
 
+var dragNDropZone=document.getElementById('zone-pdf');
 
 //Fonction permettant d'ajouter plusieurs listener d'un coup
 function addListenerMulti(el, s, fn) {
@@ -21,49 +21,85 @@ addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', functi
 });
 
 
-dropZone.addEventListener('dragover', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    dropZone.className = "upload-drop-zone dragover";
+$(function () {
+    var dropZoneId = "zone-pdf";
+    var dropZone = $("#" + dropZoneId);
+    var ooleft = dropZone.offset().left;
+    var ooright = dropZone.outerWidth() + ooleft;
+    var ootop = dropZone.offset().top;
+    var oobottom = dropZone.outerHeight() + ootop;
+    var inputFile = dropZone.find("input");
+    dragNDropZone.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-});
+        document.getElementById('drop-zone').style.display = "visible";
+        dragNDropZone.className="upload-drop-zone row view-pdf dragover";
 
-dropZone.addEventListener('dragleave', function(e) {
-    dropZone.className="upload-drop-zone";
-});
+        var x = e.pageX;
+        var y = e.pageY;
+
+        if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
+            inputFile.offset({ top: y - 15, left: x - 100 });
+        } else {
+            inputFile.offset({ top: -400, left: -400 });
+        }
+
+    }, true);
 
 
-dropZone.addEventListener('drop', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    var dt    = e.dataTransfer;
-    if(dt.files.length!=0) {
-        var name = dt.files[0].name;
-    }
-    if(name==null || name.substring(name.length-4,name.length) != ".pdf"){
-        alert("Vous ne pouvez ajouter que des fichiers PDF.");
-        dropZone.className="upload-drop-zone";
-        return;
-    }
-    dropZone.className="upload-drop-zone";
-    $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
-    window.setTimeout(function(){
-        $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
-    }, 5000);
+    dragNDropZone.addEventListener("drop", function (e) {
 
-    // Récupération des données :
+        var input = document.getElementById('input');
+        input.onchange = function () {
+            if(input.files.length!=0) {
+                var name = input.files[0].name;
+            }
+            var extension = name.split('.').pop();
+            if (!/(pdf)$/ig.test(extension)) {
+                alert("Vous ne pouvez ajouter que des fichiers PDF.");
+                dropZone.className="upload-drop-zone";
+                return;
+            }
 
-    var files = dt.files;
-    for (var i=0; i<files.length; i++) {
-        var file = files[i];
-        var name = file.name;
-        addNewFile();
-        addListenerZoneMobile(NBFILE);
-        var inputpath=document.getElementById('inputPath'+NBFILE);
-        inputpath.value=name;
-        inputpath.file=file;
-    }
-});
+            document.getElementById('drop-zone').style.display = "none";
+            dragNDropZone.className="upload-drop-zone row view-pdf";
+            dragNDropZone.style.border = "none";
+
+
+            // Récupération des données :
+            var file = input.files[0];
+            var files = input.files;
+            for (var i=0; i<files.length; i++) {
+                var file = files[i];
+                var name = file.name;
+                addNewFile();
+                addListenerZoneMobile(NBFILE);
+                var inputpath=document.getElementById('inputPath'+NBFILE);
+                inputpath.value=name;
+            }
+
+            oldInput = document.getElementById('fileInput'+NBFILE);
+            oldInput.parentNode.removeChild(oldInput);
+            input.id = "fileInput"+NBFILE;
+            createNewInput();
+            displayPdf(input,NBFILE);
+        };
+
+    }, true);
+
+})
+
+function createNewInput() {
+    var newInput = document.createElement('input');
+    newInput.type = 'file';
+    newInput.id ='input';
+    newInput.className = 'inputfile fileInput';
+    newInput.accept = 'application/pdf';
+    dragNDropZone.appendChild(newInput);
+}
+
+
 
 function addListenerZoneMobile(id){
     document.getElementById('tiretMove'+id).addEventListener('dragstart', function (e) {

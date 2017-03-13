@@ -69,6 +69,7 @@ function visibilityHelp(thingID){
 function onLostFocus(){
     var champ = document.getElementById("numsPages").value;
     champ = champ.replace(/[a-zA-Z]/g,' ');
+    //Faire fonction de cut a nbPageMax .
     document.getElementById("numsPages").value = champ;
 }
 
