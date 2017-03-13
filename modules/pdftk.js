@@ -13,11 +13,11 @@ function putsErrors(error,res) {
 
 
 // Prend en paramètre un tableau de chemins de fichiers
-exports.fusion=function fusion(tabfic){
+exports.fusion=function fusion(tabfic,out){
     var listefichiers = "";
     for (var i=0; i<tabfic.length; i++)
-        listefichiers = listefichiers + " " + "routes/uploads/"+tabfic[i];
-    var cmd = "pdftk " + listefichiers + " cat output result.pdf";
+        listefichiers = listefichiers + " " +tabfic[i];
+    var cmd = "pdftk " + listefichiers + " cat output "+out;
     execSync(cmd);
     exec('rm routes/uploads/*');
 }
@@ -38,9 +38,9 @@ exports.get_form_fields=function get_form_fields() {
 }
 
 
-exports.remplirPdf=function remplirPdf(){
-    var cmd="pdftk /routes/uploads/formfic.pdf fill_form formrempli.fdf output result.pdf";
+exports.remplirPdf=function remplirPdf(out,fdf){
+    var cmd="pdftk /routes/uploads/formfic.pdf fill_form "+ fdf +" output "+out;
     execSync(cmd);
-    exec('rm formrempli.fdf ');
+    exec('rm '+fdf);
     exec('rm routes/uploads/*');
 }
