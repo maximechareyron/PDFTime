@@ -4,20 +4,9 @@
 
 //Sources:
 /*
-var dropZone=document.getElementById('zone-pdf');
 
-//Fonction permettant d'ajouter plusieurs listener d'un coup
-function addListenerMulti(el, s, fn) {
-    var evts = s.split(' ');
-    for (var i=0, iLen=evts.length; i<iLen; i++) {
-        el.addEventListener(evts[i], fn, false);
-    }
-}
-//Permet d'empecher le navigateur d'ouvrir les fichiers à sa facons
-addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-});
+
+
 
 
 var maZone = $("#" + 'zone-pdf');
@@ -77,9 +66,22 @@ dropZone.addEventListener('drop', function(e) {
 
 //http://stackoverflow.com/questions/8006715/drag-drop-files-into-standard-html-file-input
 
+//Fonction permettant d'ajouter plusieurs listener d'un coup
+function addListenerMulti(el, s, fn) {
+    var evts = s.split(' ');
+    for (var i=0, iLen=evts.length; i<iLen; i++) {
+        el.addEventListener(evts[i], fn, false);
+    }
+}
+//Permet d'empecher le navigateur d'ouvrir les fichiers à sa facons
+addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', function(e) {
+    //e.preventDefault();
+    e.stopPropagation();
+});
+
 $(function () {
     var dropZoneId = "zone-pdf";
-    var dragNDropZone = document.getElementById(dropZoneId);
+    var dragNDropZone=document.getElementById('zone-pdf');
     var dropZone = $("#" + dropZoneId);
     var ooleft = dropZone.offset().left;
     var ooright = dropZone.outerWidth() + ooleft;
@@ -91,7 +93,8 @@ $(function () {
         e.stopPropagation();
 
 
-        dragNDropZone.className = "upload-drop-zone row view-pdf dragover";
+        document.getElementById('drop-zone').style.display = "visible";
+        dragNDropZone.className="upload-drop-zone row view-pdf dragover";
 
         var x = e.pageX;
         var y = e.pageY;
@@ -122,11 +125,6 @@ $(function () {
             }
 
             dropZone.className="upload-drop-zone";
-            $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
-            window.setTimeout(function(){
-                $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
-            }, 5000);
-
 
             document.getElementById('drop-zone').style.display = "none";
             dragNDropZone.className="upload-drop-zone row view-pdf";

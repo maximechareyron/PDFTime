@@ -9,22 +9,7 @@ exports.generate_form=function generate_form_HTML(){
     tab.shift();
 
     return tab;
-    /*for (var i=0; i<tab.length; i++){
 
-        switch (tab[i][0]){
-            case 'FieldType: Text':
-                createInputText(tab[i][1]);
-                break;
-            case 'FieldType: Button':
-                createInputCheckbox(tab[i][1]);
-                break;
-            case 'FieldType: Choice':
-                createInputList(tab[i][1], tab[i]);
-                break;
-
-        }
-    }
-    */
 }
 
 function genTab(nomFic){

@@ -17,7 +17,6 @@ function htmlToString(string) {
     return str;
 }
 
-
 function createForm(tab) {
 
     for (var i=0; i<tab.length; i++){
@@ -41,6 +40,7 @@ function createForm(tab) {
     }
 }
 
+//TODO CSS
 
 function createInputText(fieldName){
     fieldName=htmlToString(fieldName);

@@ -17,7 +17,6 @@ addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', functi
     e.stopPropagation();
 });
 
-
 dropZone.addEventListener('dragover', function(e) {
     e.stopPropagation();
     e.preventDefault();
