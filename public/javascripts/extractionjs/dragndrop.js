@@ -77,7 +77,6 @@ dropZone.addEventListener('drop', function(e) {
 
 //http://stackoverflow.com/questions/8006715/drag-drop-files-into-standard-html-file-input
 
-
 $(function () {
     var dropZoneId = "zone-pdf";
     var dragNDropZone = document.getElementById(dropZoneId);
@@ -90,6 +89,7 @@ $(function () {
     dragNDropZone.addEventListener("dragover", function (e) {
         e.preventDefault();
         e.stopPropagation();
+
 
         dragNDropZone.className = "upload-drop-zone row view-pdf dragover";
 
@@ -106,35 +106,40 @@ $(function () {
 
 
     dragNDropZone.addEventListener("drop", function (e) {
+        
         var input = document.getElementById('input');
 
-        if(input.files.length!=0) {
-            var name = input.files[0].name;
-        }
-        var extension = name.split('.').pop();
-        if (!/(pdf)$/ig.test(extension)) {
-            alert("Vous ne pouvez ajouter que des fichiers PDF.");
+        input.onchange = function () {
+
+            if(input.files.length!=0) {
+                var name = input.files[0].name;
+            }
+            var extension = name.split('.').pop();
+            if (!/(pdf)$/ig.test(extension)) {
+                alert("Vous ne pouvez ajouter que des fichiers PDF.");
+                dropZone.className="upload-drop-zone";
+                return;
+            }
+
             dropZone.className="upload-drop-zone";
-            return;
-        }
-
-        dropZone.className="upload-drop-zone";
-        $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
-        window.setTimeout(function(){
-            $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
-        }, 5000);
+            $('#zoneDropText').replaceWith('<b id="zoneDropText">Fichier ajouté !</b>');
+            window.setTimeout(function(){
+                $('#zoneDropText').replaceWith('<b id="zoneDropText">Glisser-Déposer un PDF.</b>');
+            }, 5000);
 
 
-        document.getElementById('drop-zone').style.display = "none";
-        dragNDropZone.className="upload-drop-zone row view-pdf";
-        dragNDropZone.style.border = "none";
+            document.getElementById('drop-zone').style.display = "none";
+            dragNDropZone.className="upload-drop-zone row view-pdf";
+            dragNDropZone.style.border = "none";
 
-        // Récupération des données :
-        var file = input.files[0];
-        var inputpath = document.getElementById("inputPath");
-        inputpath.value = file.name;
 
-        display(input);
+            // Récupération des données :
+            var file = input.files[0];
+            var inputpath = document.getElementById("inputPath");
+            inputpath.value = file.name;
+
+            display(input);
+        };
 
     }, true);
 

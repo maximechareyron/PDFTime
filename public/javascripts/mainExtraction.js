@@ -64,7 +64,6 @@ function visibilityHelp(thingID){
         element.className = "btn btn-md btn-circle btn-default";
         document.getElementById(thingID).style.display = "none";
     }
-
 }
 
 function onLostFocus(){
