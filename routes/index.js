@@ -8,9 +8,6 @@ var pdftk=require('../modules/pdftk');
 var generate_form=require('../modules/generate_form');
 var async=require('async');
 var exec = require('child_process').exec;
-var qs=require('querystring');
-var bodyParser=require('body-parser');
-var multer = require('multer');
 
 
 /* GET home page. */
@@ -41,6 +38,7 @@ router.post('/fusion/upload', function(req, res){
 router.post('/extraction/upload', function(req, res){
     var fields = [];
     var form = new formidable.IncomingForm();
+    var filename;
 
     form.uploadDir = path.join(__dirname, '/uploads');
 
@@ -48,20 +46,19 @@ router.post('/extraction/upload', function(req, res){
         fields[field]=value;
     });
 
+
     form.on('file', function(name, file){
-        var filename="extract.pdf";
-        fs.rename(file.path, path.join(form.uploadDir, filename));
+        filename = file.path;
     });
 
     form.on('end', function(){
-        pdftk.extraction(fields['numsPages']);
-        res.sendFile("result.pdf", {root: path.join(__dirname, '/..')},function (err){
-            exec('rm result.pdf');
+        var out = filename.split('/').pop();
+        pdftk.extraction(fields['numsPages'], filename, out);
+        res.sendFile(out, {root: path.join(__dirname, '/..')},function (err){
+            exec('rm' + out);
         });
     });
-
     form.parse(req);
-
 });
 
 router.post('/uploadform2', function(req, res){

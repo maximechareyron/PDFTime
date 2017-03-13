@@ -23,11 +23,12 @@ exports.fusion=function fusion(tabfic){
 }
 
 // Prend en paramètre un fichier dont il faut extraire des pages
-exports.extraction=function extraction(nums){
-    var fichier="routes/uploads/extract.pdf";
-    var cmd="pdftk " + fichier + " cat " + nums + " output result.pdf" ;
+exports.extraction=function extraction(nums, fichier, out){
+
+    var cmd="pdftk " + fichier + " cat " + nums + " output " + out;
     execSync(cmd);
-    exec('rm routes/uploads/*');
+    // cmd = "rm " + fichier;
+    exec("rm " + fichier);
 }
 
 // Prend en paramètre un fichier pdf et génère un fichier txt avec les champs
