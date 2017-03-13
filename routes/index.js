@@ -46,7 +46,6 @@ router.post('/extraction/upload', function(req, res){
         fields[field]=value;
     });
 
-
     form.on('file', function(name, file){
         filename = file.path;
     });
