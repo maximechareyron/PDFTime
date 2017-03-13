@@ -51,10 +51,13 @@ router.post('/extraction/upload', function(req, res){
     });
 
     form.on('end', function(){
-        var out = filename.split('/').pop();
+        var splitter;
+        filename.charAt(0)=='/' ? splitter = '/' : splitter = '\\';
+        var out = filename.split(splitter).pop() + '.pdf';
+
         pdftk.extraction(fields['numsPages'], filename, out);
         res.sendFile(out, {root: path.join(__dirname, '/..')},function (err){
-            exec('rm' + out);
+            exec('rm ' + out);
         });
     });
     form.parse(req);
