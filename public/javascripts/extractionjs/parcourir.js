@@ -3,7 +3,7 @@
  */
 
 function searchinput() {
-    var input = document.getElementById("fileInput");
+    var input = document.getElementById("input");
     input.click();
     input.onchange = function () {
         var path = document.getElementById('fileInput').value;
