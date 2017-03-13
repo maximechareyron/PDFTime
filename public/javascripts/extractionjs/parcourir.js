@@ -6,7 +6,7 @@ function searchinput() {
     var input = document.getElementById("input");
     input.click();
     input.onchange = function () {
-        var path = document.getElementById('fileInput').value;
+        var path = document.getElementById('input').value;
 
         var file = input.files[0];
         var name = file.name;
