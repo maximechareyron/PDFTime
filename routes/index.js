@@ -56,8 +56,9 @@ router.post('/fusion/upload', function(req, res){
 
     // once all the files have been uploaded, send a response to the client
     form.on('end', function(err) {
-        var out = filename.split('\\').pop();
-        out=out+".pdf";
+        var splitter;
+        filename.charAt(0)=='/' ? splitter = '/' : splitter = '\\';
+        var out = filename.split(splitter).pop() + '.pdf';
         async.series([
                 function (callback){  pdftk.fusion(fichiers,out) ;   callback()}],
             function(){res.sendFile(out, {root: path.join(__dirname, '/..')},function (err){
@@ -104,12 +105,14 @@ router.post('/extraction/upload', function(req, res){
 
 router.post('/uploadform2', function(req, res){
     // create an incoming form object
+    var filename;
     var form = new formidable.IncomingForm();
     // store all uploads in the /uploads directory
-    form.uploadDir = path.join(__dirname, '/uploads');
+    form.uploadDir = path.join(__dirname, '../');
     form.on('file', function (field, file) {
-        var filename="formfic.pdf";
+        filename=Date.now()+".pdf";
         fs.rename(file.path, path.join(form.uploadDir, filename));
+        console.log(filename);
     });
 
     // log any errors that occur
@@ -118,8 +121,10 @@ router.post('/uploadform2', function(req, res){
     });
 
     form.on('end', function(err) {
-        pdftk.get_form_fields();
-        var tab=generate_form.generate_form();
+        var fields=Date.now()+".txt";
+        pdftk.get_form_fields(fields,filename);
+        var tab=generate_form.generate_form(fields,filename);
+        exec("rm "+fields);
         res.render('formulaire2', {tab: tab});
 
     });
@@ -134,6 +139,7 @@ router.post('/uploadform2/formRempli', function(req,res){
     //req.body affectée dans une autre variable pour pouvoir accéder aux champs facilement sans avoir la valeur du "name"
     var post=req.body;
     var cle2;
+    var infile;
     var contenu= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+ "<xfdf xmlns=\"http://ns.adobe.com/xfdf/\" xml:space=\"preserve\">"+ " <fields>";
     for (var cle in post){
         if (post[cle] == "on" && cle.substring(cle.length-3,cle.length)=="chk") { //Si l'utilisateur veut taper "on" dans un autre champ
@@ -145,7 +151,12 @@ router.post('/uploadform2/formRempli', function(req,res){
         else {
             cle2=cle;
         }
-        contenu+="\<field name="+"\""+cle2+"\""+"\><value>"+post[cle]+"\</value>\</field>";
+        if (cle == "nomOut") { //Nom du fichier pdf uploadé par l'utilisateur
+            infile=post[cle];
+        }
+        else {
+            contenu += "\<field name=" + "\"" + cle2 + "\"" + "\><value>" + post[cle] + "\</value>\</field>";
+        }
     }
     contenu +="\</fields></xfdf>";
 
@@ -153,10 +164,10 @@ router.post('/uploadform2/formRempli', function(req,res){
     var fdf= Date.now()+".fdf";
     fs.writeFileSync(path.join(path.join(__dirname,"/.."),fdf),contenu);
     var out= Date.now()+".pdf";
-    console.log(out);
-    pdftk.remplirPdf(out,fdf);
+    pdftk.remplirPdf(out,fdf,infile);
 
     res.sendFile(out, {root: path.join(__dirname, '/..')},function (err){
+        exec('rm '+infile);
         exec('rm '+out);
     });
 });

@@ -4,16 +4,17 @@
 
 // Génère le formulaire HTML à partir des champs du pdf.
 
-exports.generate_form=function generate_form_HTML(){
-    var tab=genTab('form_fields.txt');
+exports.generate_form=function generate_form_HTML(nomFic, out){
+    var tab=genTab(nomFic,out);
     tab.shift();
 
     return tab;
 
 }
 
-function genTab(nomFic){
+function genTab(nomFic,out){
     var fs = require('fs');
+
     var contents = fs.readFileSync(nomFic).toString();
     var tableau=contents.split("---");
     for (var i=0; i<tableau.length; i++) {
@@ -21,6 +22,7 @@ function genTab(nomFic){
         if(tableau[i][0]=='') tableau[i].shift();
         tableau[i].pop();
     }
+    tableau.push(out);
     return tableau;
 }
 

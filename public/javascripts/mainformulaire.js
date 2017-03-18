@@ -18,7 +18,7 @@ function htmlToString(string) {
 }
 
 function createForm(tab) {
-
+    createInputHidden(tab[tab.length-1]);
     for (var i=0; i<tab.length; i++){
         switch (tab[i][0]){
             case 'FieldType: Text':
@@ -41,6 +41,14 @@ function createForm(tab) {
 }
 
 //TODO CSS
+
+function createInputHidden(fileName){
+    var input=document.createElement("input");
+    input.setAttribute("name", "nomOut");
+    input.setAttribute("value", fileName);
+    input.setAttribute("type","hidden");
+    document.getElementById('zone_form').appendChild(input);
+}
 
 function createInputText(fieldName){
     fieldName=htmlToString(fieldName);
@@ -68,7 +76,7 @@ function createInputCheckbox(fieldName){
     p.setAttribute("class", "text-left");
     p.setAttribute("style", "color: black");
     var input=document.createElement("input");
-    input.setAttribute("name",fieldName );
+    input.setAttribute("name",fieldName+"chk" );
     input.setAttribute("type","checkbox");
     document.getElementById('zone_form').appendChild(div);
     div.appendChild(p);
