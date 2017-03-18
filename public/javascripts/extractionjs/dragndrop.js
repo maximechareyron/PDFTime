@@ -26,11 +26,12 @@ $(function () {
     var ooright = dropZone.outerWidth() + ooleft;
     var ootop = dropZone.offset().top;
     var oobottom = dropZone.outerHeight() + ootop;
+    var input = document.getElementById('input');
     var inputFile = dropZone.find("input");
     dragNDropZone.addEventListener("dragover", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
+        input.style.zIndex = 1;
 
         document.getElementById('drop-zone').style.display = "visible";
         dragNDropZone.className="upload-drop-zone row view-pdf dragover";
@@ -48,8 +49,6 @@ $(function () {
 
 
     dragNDropZone.addEventListener("drop", function (e) {
-        
-        var input = document.getElementById('input');
 
         input.onchange = function () {
 
@@ -76,6 +75,7 @@ $(function () {
             inputpath.value = file.name;
 
             display(input);
+            input.style.zIndex = 0;
         };
 
     }, true);
