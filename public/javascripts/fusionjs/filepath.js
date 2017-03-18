@@ -16,26 +16,13 @@ function searchinput(nbfile) {
         }
         document.getElementById('inputPath'+nbfile).value=name;
         document.getElementById('inputPath'+nbfile).file=file;
-        var reader = new FileReader();
 
-        //attach event handlers here :
-        reader.addEventListener('loadend', function(e, file) {
-            var bin           = this.result;
-            var pdf=document.createElement('object');
-            pdf.type="application/pdf";
-            pdf.data=bin;
-            pdf.width="100%";
-            pdf.height="600";
-            pdf.id="pdf";
-            var oldpdf=document.getElementById('pdf');
-            if(oldpdf!=null) {
-                document.getElementById('zone-pdf').removeChild(oldpdf);
-            }
-            document.getElementById('zone-pdf').appendChild(pdf);
 
-        });
+        document.getElementById('drop-zone').style.display = "none";
+        dragNDropZone.className="upload-drop-zone row view-pdf";
+        dragNDropZone.style.border = "none";
 
-        reader.readAsDataURL(file);
+        displayPdf(input,nbfile);
 
         var fileinputs=document.getElementsByClassName('fileInput');
         document.getElementById('validButton').disabled= false;

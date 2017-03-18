@@ -131,11 +131,12 @@ font-size:12px;
 
 
 
-#input {
+.inputfile {
     /*Important*/
-    /*position: absolute;*/
+    position: absolute;
     /*Important*/
     cursor: pointer;
+    z-index: 1;
     left: 0px;
     top: 0px;
     /*Important This is only comment out for demonstration purposes.*/

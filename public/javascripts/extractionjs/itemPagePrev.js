@@ -6,17 +6,17 @@ function newThumb(page,zone){
     var MaDiv = document.createElement('div');
     MaDiv.className='text-center col-sm-2';
     MaDiv.style.color = "black";
+    MaDiv.style.marginLeft="5%";
     MaDiv.id=('thumb'+page);
-    MaDiv.innerHTML='<div class="col-sm-2">\
+    MaDiv.innerHTML='\
     <canvas id="canvasPage'+page+'" style="border:1px solid black" onclick="check('+page+');"></canvas>\
-    <input type="checkbox" id="page'+page+'" name="page'+page+'">'+page+'\
-    </div>';
+    <input type="checkbox" id="page'+page+'" name="page'+page+'"><br/>'+page+'';
     document.getElementById(zone).appendChild(MaDiv);
 }
 
 function setPage2Canvas(pdf,i) {
     pdf.getPage(i).then(function getPageHelloWorld(page) {
-        var scale = 0.25;
+        var scale = 0.20;
         var viewport = page.getViewport(scale);
         //
         // Prepare canvas using PDF page dimensions

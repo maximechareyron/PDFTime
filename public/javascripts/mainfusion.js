@@ -10,6 +10,7 @@ function include(fileName){
 include("modules/bootstrap.js");
 include("fusionjs/dragndrop.js");
 include("fusionjs/filepath.js");
+include("fusionjs/displayPdf.js");
 include("modules/pdf.js");
 include("modules/pdf.worker.js");
 include("topAndBottom.js");
@@ -97,7 +98,7 @@ function addNewFile() {
         </div>\
         <div class="newplace" id="newplace'+NBFILE+'"/>';
     document.getElementById('zone_nbFile').appendChild(MaDiv);
-    document.getElementById('validButton').disabled= true;
+    //document.getElementById('validButton').disabled= true;
 }
 
 function createNewFile() {
@@ -113,19 +114,22 @@ function createNewFile() {
         <div class="input-group" style="margin-bottom:2px;">\
         <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath'+NBFILE+'" disabled style="cursor: text">\
         <div class="input-group-btn">\
-        <input id="fileInput'+NBFILE+'" class="fileInput" accept="application/pdf" type="file" name="upload"  style="display:none;" />\
+        <input type="file" id="fileInput'+NBFILE+'" class="fileInput inputfile" accept="application/pdf" name="upload"/>\
         <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput('+NBFILE+');"/>\
         </div>\
         </div>\
         </div>\
         <div class="newplace" id="newplace'+NBFILE+'"/>';
+
     return MaDiv;
 
 }
 
 function trashFILE(FileNum){
     var element = document.getElementById('zoneMobile'+FileNum)// element à supprimer
+    cleanPdf(FileNum);
     element.parentNode.removeChild(element);
+
 }
 
 function alertSave(){
