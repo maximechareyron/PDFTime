@@ -10,7 +10,6 @@ PDFJS.disableWorker = true;
 //
 // Asynchronous download PDF as an ArrayBuffer
 //
-
 function displayPdf(input,nbfile){
     var cvstest = document.getElementById(nbfile);
     if ( cvstest != null)
@@ -20,27 +19,27 @@ function displayPdf(input,nbfile){
         fileReader.onload = function() {
             PDFJS.getDocument(fileReader.result).then(function getPdfHelloWorld(pdf) {
                 pdf.getPage(1).then(function getPageHelloWorld(page) {
-                    var scale = 0.25;
+                    var scale = 0.30;
                     var viewport = page.getViewport(scale);
                     //
                     // Prepare canvas using PDF page dimensions
                     //
                     var divcvs = document.createElement('div');
                     divcvs.id = nbfile;
-                    divcvs.className="col-sm-4 text-center";
-                    divcvs.style.margin = "10px";
+                    divcvs.className="col-sm-6 text-center";
+                    divcvs.style.margin = "1%";
+                    divcvs.style.marginLeft = "20%";
                     divcvs.style.padding = "10px";
                     divcvs.style.color ="#ccc";
-                    divcvs.style.backgroundColor="#2c2c2c";
-                    divcvs.style.borderRadius="10%";
                     divcvs.width = viewport.width;
                     divcvs.height = viewport.height;
+                    divcvs.style.backgroundColor="#2c2c2c";
+                    divcvs.style.borderRadius="10%";
                     divcvs.innerHTML="<canvas id='"+file.name+"' ></canvas>\
                     <p>"+file.name+"</p>";
 
                     document.getElementById("zone-pdf").appendChild(divcvs);
                     var canvas = document.getElementById(file.name);
-
                     var context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;

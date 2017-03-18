@@ -16,7 +16,7 @@ function addListenerMulti(el, s, fn) {
 }
 //Permet d'empecher le navigateur d'ouvrir les fichiers à sa facons
 addListenerMulti(window,'drag dragend dragover dragenter dragleave drop', function(e) {
-    e.preventDefault();
+    //e.preventDefault();
     e.stopPropagation();
 });
 
@@ -28,13 +28,17 @@ $(function () {
     var ooright = dropZone.outerWidth() + ooleft;
     var ootop = dropZone.offset().top;
     var oobottom = dropZone.outerHeight() + ootop;
-    var inputFile = dropZone.find("input");
     dragNDropZone.addEventListener("dragover", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
+        var inputFile = dropZone.find("input");
+        var input = document.getElementById('input');
+
         document.getElementById('drop-zone').style.display = "visible";
         dragNDropZone.className="upload-drop-zone row view-pdf dragover";
+
+        input.style.zIndex = 1;
 
         var x = e.pageX;
         var y = e.pageY;
@@ -49,11 +53,16 @@ $(function () {
 
 
     dragNDropZone.addEventListener("drop", function (e) {
-
         var input = document.getElementById('input');
+
+
         input.onchange = function () {
             if(input.files.length!=0) {
                 var name = input.files[0].name;
+            }
+            if (document.getElementById('fileInput0') == null || document.getElementById('fileInput0').file == null ){
+                if((content  = document.getElementById('contenant0')) != null)
+                    content.parentNode.removeChild(content);
             }
             var extension = name.split('.').pop();
             if (!/(pdf)$/ig.test(extension)) {
@@ -81,6 +90,7 @@ $(function () {
 
             oldInput = document.getElementById('fileInput'+NBFILE);
             oldInput.parentNode.removeChild(oldInput);
+            input.style.zIndex = 0;
             input.id = "fileInput"+NBFILE;
             createNewInput();
             displayPdf(input,NBFILE);
