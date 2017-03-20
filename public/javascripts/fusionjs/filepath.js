@@ -11,7 +11,7 @@ function searchinput(nbfile) {
         var file=input.files[0];
         var name=file.name;
         if(name.substring(name.length-4,name.length) != ".pdf") {
-            alert("Vous ne pouvez ajouter que des fichiers PDF.")
+            alert("Vous ne pouvez ajouter que des fichiers PDF.");
             return;
         }
         document.getElementById('inputPath'+nbfile).value=name;
@@ -33,5 +33,4 @@ function searchinput(nbfile) {
             }
         }
     }
-
 }
