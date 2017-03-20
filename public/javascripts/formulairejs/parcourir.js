@@ -3,10 +3,10 @@
  */
 
 function searchinput() {
-    var input = document.getElementById("fileInput");
+    var input = document.getElementById("input");
     input.click();
     input.onchange = function () {
-        var path = document.getElementById('fileInput').value;
+        var path = document.getElementById('input').value;
 
         var file = input.files[0];
         var name = file.name;
@@ -25,15 +25,17 @@ function searchinput() {
             pdf.type = "application/pdf";
             pdf.data = bin;
             pdf.width = "100%";
-            pdf.height = "600";
+            pdf.height = "500";
             pdf.id = "pdf";
             var oldpdf = document.getElementById('pdf');
             if (oldpdf != null) {
                 document.getElementById('zone-pdf').removeChild(oldpdf);
             }
             document.getElementById('zone-pdf').appendChild(pdf);
-
         });
+
+        dropPlace  = document.getElementById('drop-zone');
+        dropPlace.parentNode.removeChild(dropPlace);
 
         reader.readAsDataURL(file);
     }

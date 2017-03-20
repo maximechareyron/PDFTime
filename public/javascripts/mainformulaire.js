@@ -2,21 +2,65 @@
  * Created by nahel on 09/02/2017.
  */
 
+// Disable workers to avoid yet another cross-origin issue (workers need the URL of
+// the script to be loaded, and dynamically loading a cross-origin script does
+// not work)
+//
+var nbPagePdf;
+
 function include(fileName){
     document.write("<script type='text/javascript' src='javascripts/"+fileName+"'></script>" );
 }
 
 include("modules/bootstrap.js");
+include("modules/pdf.worker.js");
+include("modules/pdf.js");
 include("topAndBottom.js");
 include("toggleBtn.js");
+include("modules/p5.js");
+include("snake.js");
+include("navball.js");
 include("formulairejs/dragndrop.js");
 include("formulairejs/parcourir.js");
+include("extractionjs/itemPagePrev.js");
 
 function htmlToString(string) {
     var str=string.replace('&#233;', "é");
     return str;
 }
 
+function display(input){
+    var file = input.files[0];
+    var name = file.name;
+    if (name.substring(name.length - 4, name.length) != ".pdf") {
+        alert("Vous ne pouvez ajouter que des fichiers PDF.")
+        return;
+    }
+    document.getElementById('inputPath').value = name;
+    document.getElementById('inputPath').file = file;
+    var reader = new FileReader();
+
+    //attach event handlers here :
+    reader.addEventListener('loadend', function (e, file) {
+        var bin = this.result;
+        var pdf = document.createElement('object');
+        pdf.type = "application/pdf";
+        pdf.data = bin;
+        pdf.width = "100%";
+        pdf.height = "500";
+        pdf.id = "pdf";
+        var oldpdf = document.getElementById('pdf');
+        if (oldpdf != null) {
+            document.getElementById('zone-pdf').removeChild(oldpdf);
+        }
+        document.getElementById('zone-pdf').appendChild(pdf);
+    });
+
+    dropPlace  = document.getElementById('drop-zone');
+    dropPlace.parentNode.removeChild(dropPlace);
+
+    reader.readAsDataURL(file);
+}
 function createForm(tab) {
     createInputHidden(tab[tab.length-1]);
     for (var i=0; i<tab.length; i++){

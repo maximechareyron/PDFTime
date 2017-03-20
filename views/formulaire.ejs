@@ -19,20 +19,14 @@
                     <div class="text-left"><b>Importer un fichier : </b></div>
 
 
-                    <div class="upload-drop-zone" id='drop-zone'>
-                        <i class="glyphicon glyphicon-download-alt" style="font-size: 30px; margin-right: 10px;"></i>
-                        <b id="zoneDropText">Glisser-Déposer un PDF.</b>
-                    </div>
 
 
-                        <input type="text" class="form-control" placeholder="Chemin vers fichier" id="inputPath" disabled style="cursor: text">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Chemin vers fichier" id="inputPath" disabled="" type="text">
                         <div class="input-group-btn">
-
-                            <input id="fileInput" class="fileInput" accept="application/pdf" type="file" name="upload" style="display:none;" />
-                            <input type="button" class="btn btn-default"  value="Parcourir" onclick="searchinput();"/>
-
+                            <input class="btn btn-default" value="Parcourir" onclick="searchinput();" type="button"/>
                         </div>
-
+                    </div>
 
                 </div>
 
@@ -56,8 +50,12 @@
 
         <div class="col-sm-6 visible-md visible-lg" style="text-align:center;">
 
-            <div class="row view-pdf" id="zone-pdf">
-
+            <div class="upload-drop-zone row view-pdf" id="zone-pdf">
+                <div class="upload-drop-zone" id='drop-zone' style="line-height: 500px;">
+                    <i class="glyphicon glyphicon-download-alt" style="font-size: 30px; margin-right: 10px;"></i>
+                    <b id="zoneDropText">Glisser-Déposer un PDF.</b>
+                </div>
+                <input type="file" id="input" class="inputfile" name="drop" accept="application/pdf" >
             </div>
 
         </div>
