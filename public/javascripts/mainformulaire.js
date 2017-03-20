@@ -56,7 +56,7 @@ function display(input){
         document.getElementById('zone-pdf').appendChild(pdf);
     });
 
-    dropPlace  = document.getElementById('drop-zone');
+    dropPlace = document.getElementById('drop-zone');
     dropPlace.parentNode.removeChild(dropPlace);
 
     reader.readAsDataURL(file);

@@ -88,6 +88,7 @@ $(function () {
             document.getElementById('inputPath').value = name;
             document.getElementById('inputPath').file = file;
 
+            document.getElementById('validButton').click();
         };
 
     }, true);

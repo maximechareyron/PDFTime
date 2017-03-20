@@ -56,20 +56,26 @@ router.post('/fusion/upload', function(req, res){
 
     // once all the files have been uploaded, send a response to the client
     form.on('end', function(err) {
-        var splitter;
-        filename.charAt(0)=='/' ? splitter = '/' : splitter = '\\';
+
+            var splitter;
+        filename.charAt(0) == '/' ? splitter = '/' : splitter = '\\';
         var out = filename.split(splitter).pop() + '.pdf';
         async.series([
-                function (callback){  pdftk.fusion(fichiers,out) ;   callback()}],
-            function(){res.sendFile(out, {root: path.join(__dirname, '/..')},function (err){
-                if (err){
-                    console.log(err);
-                }
-                else {
-                    exec('rm ' +out);
-                }
-            });});
-
+                function (callback) {
+                    pdftk.fusion(fichiers, out);
+                    callback()
+                }],
+            function () {
+                res.sendFile(out, {root: path.join(__dirname, '/..')}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        exec('rm ' + out);
+                    }
+                });
+            });
+        
     });
     // parse the incoming request containing the form data
     form.parse(req);
